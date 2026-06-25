@@ -2,7 +2,9 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
 
-const appBase = process.env.GITHUB_PAGES === 'true' ? '/rainbow-quest-island/' : '/'
+const appBase =
+  process.env.PWA_BASE ??
+  (process.env.GITHUB_PAGES === 'true' ? '/rainbow-quest-island/' : '/')
 
 // https://vite.dev/config/
 export default defineConfig({
