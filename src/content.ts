@@ -109,7 +109,7 @@ export const tasks: LearningTask[] = [
     skill: '象形观察 + 字形演变 + 笔顺',
     glyph: {
       character: '日',
-      pinyin: 'ri',
+      pinyin: 'rì',
       objectName: '太阳',
       scene: 'sun',
       meaning: '白天、太阳、一天',
@@ -152,7 +152,7 @@ export const tasks: LearningTask[] = [
     skill: '象形观察 + 结构感知',
     glyph: {
       character: '山',
-      pinyin: 'shan',
+      pinyin: 'shān',
       objectName: '山峰',
       scene: 'mountain',
       meaning: '高高的山、山坡、山顶',
@@ -195,7 +195,7 @@ export const tasks: LearningTask[] = [
     skill: '象形观察 + 线条方向',
     glyph: {
       character: '水',
-      pinyin: 'shui',
+      pinyin: 'shuǐ',
       objectName: '水流',
       scene: 'water',
       meaning: '河水、雨水、喝水',
