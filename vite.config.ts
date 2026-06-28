@@ -36,6 +36,7 @@ export default defineConfig({
       workbox: {
         globPatterns: ['**/*.{js,css,html,svg,png,webp,json}'],
         globIgnores: ['**/rainbow-quest-world.png'],
+        importScripts: ['sw-refresh.js'],
         cleanupOutdatedCaches: true,
         clientsClaim: true,
         skipWaiting: true,
