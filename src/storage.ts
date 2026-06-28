@@ -3,12 +3,15 @@ import type { SubjectId } from './content'
 
 export type LearnerProgress = {
   id: string
+  playerName: string
   stars: number
   streakDays: number
   lastPlayed: string
   completedTaskIds: string[]
   subjectStars: Record<SubjectId, number>
-  petName: string
+  crystalDust: number
+  paintingsSaved: number
+  craftedGems: string[]
   petLevel: number
 }
 
@@ -28,6 +31,7 @@ const db = new RainbowQuestDB()
 export function createBlankProgress(): LearnerProgress {
   return {
     id: 'main',
+    playerName: '研姐',
     stars: 0,
     streakDays: 0,
     lastPlayed: '',
@@ -37,7 +41,9 @@ export function createBlankProgress(): LearnerProgress {
       math: 0,
       english: 0,
     },
-    petName: '小露',
+    crystalDust: 0,
+    paintingsSaved: 0,
+    craftedGems: [],
     petLevel: 1,
   }
 }
@@ -55,7 +61,10 @@ function normalizeProgress(progress: LearnerProgress) {
     completedTaskIds: Array.isArray(progress.completedTaskIds)
       ? progress.completedTaskIds
       : [],
-    petName: progress.petName || blank.petName,
+    playerName: '研姐',
+    craftedGems: Array.isArray(progress.craftedGems)
+      ? progress.craftedGems
+      : [],
   }
 }
 
@@ -116,4 +125,31 @@ export async function resetProgress() {
   const blank = createBlankProgress()
   await saveProgress(blank)
   return blank
+}
+
+export async function recordPainting(progress: LearnerProgress) {
+  const nextProgress: LearnerProgress = {
+    ...progress,
+    paintingsSaved: progress.paintingsSaved + 1,
+    crystalDust: progress.crystalDust + 2,
+  }
+  await saveProgress(nextProgress)
+  return nextProgress
+}
+
+export async function recordGem(
+  progress: LearnerProgress,
+  gemName: string,
+) {
+  const alreadyCrafted = progress.craftedGems.includes(gemName)
+  const nextProgress: LearnerProgress = {
+    ...progress,
+    craftedGems: alreadyCrafted
+      ? progress.craftedGems
+      : [...progress.craftedGems, gemName],
+    crystalDust: progress.crystalDust + (alreadyCrafted ? 1 : 5),
+    stars: progress.stars + (alreadyCrafted ? 0 : 5),
+  }
+  await saveProgress(nextProgress)
+  return nextProgress
 }

@@ -1,6 +1,13 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import {
-  ArrowLeft,
+  lazy,
+  Suspense,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react'
+import {
   Check,
   ChevronRight,
   Coins,
@@ -13,24 +20,40 @@ import {
 } from 'lucide-react'
 import { pinyin } from 'pinyin-pro'
 import './App.css'
+import { playNotes, prepareVoices, speak, speakEnglishThenChinese } from './audio'
 import {
   getDailyTasks,
   getSubjectTasks,
+  subjects,
   type LearningTask,
   type MarketItem,
+  type MarketTask,
   type SubjectId,
 } from './content'
-import { HanziPractice } from './components/HanziPractice'
+import { ChoiceQuest } from './components/ChoiceQuest'
+import { GemWorkshopScene } from './components/GemWorkshopScene'
+import { NpcDialogue, PinyinLine, SceneHeader } from './components/GameUI'
+import { PaintingScene } from './components/PaintingScene'
 import {
   createBlankProgress,
   loadProgress,
+  recordGem,
+  recordPainting,
   recordTaskDone,
   resetProgress,
   type LearnerProgress,
 } from './storage'
 
-type SceneId = 'world' | SubjectId
+type SpecialScene = 'art' | 'gem'
+type SceneId = 'world' | SubjectId | SpecialScene
 type Celebration = { title: string; detail: string } | null
+type ZoneId = SubjectId | SpecialScene
+
+const HanziPractice = lazy(() =>
+  import('./components/HanziPractice').then((module) => ({
+    default: module.HanziPractice,
+  })),
+)
 
 const sceneBackgrounds: Record<SubjectId, string> = {
   chinese: 'assets/cave-interior-v2.webp',
@@ -39,123 +62,38 @@ const sceneBackgrounds: Record<SubjectId, string> = {
 }
 
 const zoneCopy: Record<
-  SubjectId,
-  { label: string; pinyin: string; marker: string; sceneClass: string }
+  ZoneId,
+  { label: string; marker: string; sceneClass: string; pinyin?: string }
 > = {
   chinese: {
-    label: '古字山洞',
-    pinyin: 'gǔ zì shān dòng',
-    marker: '刻',
+    label: '造字山洞',
+    pinyin: 'zào zì shān dòng',
+    marker: '文',
     sceneClass: 'cave-gate',
   },
   math: {
-    label: '玩具超市',
-    pinyin: 'wán jù chāo shì',
-    marker: '买',
+    label: '生活数学城',
+    pinyin: 'shēng huó shù xué chéng',
+    marker: '数',
     sceneClass: 'shop-gate',
   },
   english: {
-    label: '单词宝窟',
-    pinyin: 'dān cí bǎo kū',
-    marker: 'A',
+    label: '英语宝藏洞',
+    marker: 'ABC',
     sceneClass: 'treasure-gate',
   },
-}
-
-const englishObjects: Record<
-  string,
-  { emoji: string; name: string; wrong: [string, string] }
-> = {
-  apple: { emoji: '🍎', name: 'apple', wrong: ['📘', '🐱'] },
-  book: { emoji: '📘', name: 'book', wrong: ['🍎', '🐱'] },
-  cat: { emoji: '🐱', name: 'cat', wrong: ['📘', '🍎'] },
-}
-
-let sharedAudioContext: AudioContext | null = null
-
-function getAudioContext() {
-  if (sharedAudioContext) {
-    return sharedAudioContext
-  }
-
-  const AudioContextClass =
-    window.AudioContext ??
-    (
-      window as typeof window & {
-        webkitAudioContext?: typeof AudioContext
-      }
-    ).webkitAudioContext
-  sharedAudioContext = AudioContextClass ? new AudioContextClass() : null
-  return sharedAudioContext
-}
-
-function playNotes(notes: number[], duration = 0.12) {
-  const context = getAudioContext()
-  if (!context) {
-    return
-  }
-
-  void context.resume()
-  notes.forEach((frequency, index) => {
-    const oscillator = context.createOscillator()
-    const gain = context.createGain()
-    const start = context.currentTime + index * duration * 0.78
-    oscillator.type = 'sine'
-    oscillator.frequency.value = frequency
-    gain.gain.setValueAtTime(0.0001, start)
-    gain.gain.exponentialRampToValueAtTime(0.16, start + 0.018)
-    gain.gain.exponentialRampToValueAtTime(0.0001, start + duration)
-    oscillator.connect(gain).connect(context.destination)
-    oscillator.start(start)
-    oscillator.stop(start + duration + 0.02)
-  })
-}
-
-function speak(text: string, lang = 'zh-CN') {
-  if (!('speechSynthesis' in window)) {
-    return
-  }
-
-  window.speechSynthesis.cancel()
-  const utterance = new SpeechSynthesisUtterance(text)
-  utterance.lang = lang
-  utterance.rate = lang === 'zh-CN' ? 0.78 : 0.72
-  utterance.pitch = 1.08
-  window.speechSynthesis.speak(utterance)
-}
-
-function PinyinLine({
-  text,
-  className = '',
-  lang = 'zh-CN',
-  onSpeak,
-}: {
-  text: string
-  className?: string
-  lang?: string
-  onSpeak?: () => void
-}) {
-  const pronunciation =
-    lang === 'zh-CN'
-      ? pinyin(text, { toneType: 'symbol', nonZh: 'consecutive' })
-      : ''
-
-  return (
-    <div className={`pinyin-line ${className}`}>
-      {pronunciation && <span className="pronunciation">{pronunciation}</span>}
-      <span className="line-text">{text}</span>
-      {onSpeak && (
-        <button
-          type="button"
-          className="voice-dot"
-          aria-label={`朗读：${text}`}
-          onClick={onSpeak}
-        >
-          <Volume2 size={17} />
-        </button>
-      )}
-    </div>
-  )
+  art: {
+    label: '绘画花园',
+    pinyin: 'huì huà huā yuán',
+    marker: '🎨',
+    sceneClass: 'art-gate',
+  },
+  gem: {
+    label: '宝石工坊',
+    pinyin: 'bǎo shí gōng fāng',
+    marker: '💎',
+    sceneClass: 'gem-gate',
+  },
 }
 
 function ParentPanel({
@@ -172,7 +110,7 @@ function ParentPanel({
       <div className="sheet-head">
         <div>
           <ShieldCheck size={18} />
-          <h2>家长面板</h2>
+          <h2>研姐的学习记录</h2>
         </div>
         <button type="button" onClick={onClose}>
           关闭
@@ -184,55 +122,37 @@ function ParentPanel({
           <span>星光</span>
         </div>
         <div>
-          <strong>{progress.streakDays}</strong>
-          <span>连续天</span>
+          <strong>{progress.craftedGems.length}</strong>
+          <span>亲制宝石</span>
         </div>
         <div>
-          <strong>{progress.completedTaskIds.length}</strong>
-          <span>通关</span>
+          <strong>{progress.paintingsSaved}</strong>
+          <span>绘画作品</span>
         </div>
       </div>
-      <p>建议每天体验 8-12 分钟。学习记录只保存在这台手机。</p>
+      <div className="coverage-list">
+        {(Object.keys(subjects) as SubjectId[]).map((subject) => {
+          const tasks = getSubjectTasks(subject)
+          const done = tasks.filter((task) =>
+            progress.completedTaskIds.includes(task.id),
+          ).length
+          return (
+            <div key={subject}>
+              <span>{subjects[subject].shortName}</span>
+              <b>{done}/{tasks.length}</b>
+              <i>
+                <span style={{ width: `${(done / tasks.length) * 100}%` }} />
+              </i>
+            </div>
+          )
+        })}
+      </div>
+      <p>课程覆盖一年级语文、数学核心知识，以及一二年级英语主题。建议每天体验 10—15 分钟。</p>
       <button type="button" className="reset-button" onClick={onReset}>
         <RotateCcw size={17} />
-        <span>重置进度</span>
+        <span>重置全部进度</span>
       </button>
     </section>
-  )
-}
-
-function SceneHeader({
-  title,
-  subtitle,
-  reward,
-  onBack,
-}: {
-  title: string
-  subtitle: string
-  reward: number
-  onBack: () => void
-}) {
-  return (
-    <header className="scene-hud">
-      <button
-        type="button"
-        className="round-control"
-        aria-label="返回任务岛"
-        onClick={onBack}
-      >
-        <ArrowLeft size={22} />
-      </button>
-      <div className="level-sign">
-        <small>{pinyin(`${subtitle} ${title}`)}</small>
-        <strong>
-          {subtitle} · {title}
-        </strong>
-      </div>
-      <div className="reward-token" aria-label={`奖励 ${reward} 颗星`}>
-        <Sparkles size={17} />
-        <span>{reward}</span>
-      </div>
-    </header>
   )
 }
 
@@ -244,26 +164,26 @@ function WorldScene({
 }: {
   progress: LearnerProgress
   dailyDone: number
-  onEnter: (subject: SubjectId) => void
+  onEnter: (zone: ZoneId) => void
   onParent: () => void
 }) {
   return (
-    <section className="scene world-scene" aria-label="彩虹任务岛">
+    <section className="scene world-scene" aria-label="研姐的彩虹任务岛">
       <img
         className="scene-art"
-        src="assets/rainbow-quest-world.webp"
+        src="assets/yanjie-island-v3.webp"
         alt=""
         aria-hidden="true"
       />
       <div className="world-vignette" />
       <header className="world-hud">
         <div className="player-token">
-          <span className="avatar-face">露</span>
+          <span className="avatar-face">研</span>
           <div>
-            <strong>彩虹任务岛</strong>
-            <span>cǎi hóng rèn wù dǎo</span>
+            <strong>研姐的任务岛</strong>
+            <span>yán jiě de rèn wù dǎo</span>
             <small>
-              今日 {dailyDone}/3 · 星光 {progress.stars}
+              今日 {dailyDone}/3 · 星光 {progress.stars} · 宝石粉 {progress.crystalDust}
             </small>
           </div>
         </div>
@@ -279,89 +199,109 @@ function WorldScene({
 
       <div className="world-guide">
         <PinyinLine
-          text="今天想去哪里冒险？"
-          onSpeak={() => speak('今天想去哪里冒险？')}
+          text="研姐，今天想亲手完成哪场冒险？"
+          onSpeak={() => void speak('研姐，今天想亲手完成哪场冒险？')}
         />
       </div>
 
-      {(Object.keys(zoneCopy) as SubjectId[]).map((subject) => {
-        const zone = zoneCopy[subject]
+      {(Object.keys(zoneCopy) as ZoneId[]).map((zoneId) => {
+        const zone = zoneCopy[zoneId]
+        const isSubject = zoneId === 'chinese' || zoneId === 'math' || zoneId === 'english'
+        const subjectTasks = isSubject ? getSubjectTasks(zoneId) : []
+        const completed = subjectTasks.filter((task) =>
+          progress.completedTaskIds.includes(task.id),
+        ).length
+        const progressText =
+          zoneId === 'art'
+            ? `${progress.paintingsSaved} 幅`
+            : zoneId === 'gem'
+              ? `${progress.craftedGems.length}/3 配方`
+              : `${completed}/${subjectTasks.length} 关`
         return (
           <button
             type="button"
             className={`world-gate ${zone.sceneClass}`}
-            key={subject}
-            onClick={() => onEnter(subject)}
+            key={zoneId}
+            onClick={() => onEnter(zoneId)}
           >
             <span className="gate-rune">{zone.marker}</span>
             <span className="gate-label">
-              <small>{zone.pinyin}</small>
+              <small>{zone.pinyin ?? 'English treasure cave'}</small>
               <strong>{zone.label}</strong>
+              <em>{progressText}</em>
             </span>
             <ChevronRight size={18} />
           </button>
         )
       })}
-
-      <div className="world-companion" aria-hidden="true">
-        <span>小露</span>
-      </div>
     </section>
   )
 }
 
 function ChineseScene({
   task,
+  level,
+  total,
   onBack,
   onWin,
 }: {
   task: LearningTask
+  level: number
+  total: number
   onBack: () => void
   onWin: (message: string) => void
 }) {
   const glyph = task.glyph
-  const stableNarrate = useCallback((text: string) => speak(text), [])
+  const stableNarrate = useCallback((text: string) => {
+    void speak(text)
+  }, [])
   const stableStroke = useCallback((correct: boolean) => {
     playNotes(correct ? [660] : [190], correct ? 0.08 : 0.12)
   }, [])
 
-  if (!glyph) {
-    return null
-  }
-
   return (
-    <section className="scene interior-scene cave-scene" aria-label="古字山洞">
-      <img
-        className="scene-art"
-        src={sceneBackgrounds.chinese}
-        alt=""
-        aria-hidden="true"
-      />
+    <section className="scene interior-scene cave-scene" aria-label="造字山洞">
+      <img className="scene-art" src={sceneBackgrounds.chinese} alt="" />
       <div className="interior-vignette" />
       <SceneHeader
-        title={glyph.character}
-        subtitle="第一关 · 造字石台"
+        title={task.title}
+        subtitle={task.unit}
+        level={level}
+        total={total}
         reward={task.reward}
         onBack={onBack}
       />
-
-      <div className="cave-narrator">
-        <PinyinLine
-          text={glyph.craftLine}
-          onSpeak={() => speak(glyph.craftLine)}
-        />
-      </div>
-
-      <HanziPractice
-        character={glyph.character}
-        pinyin={glyph.pinyin}
-        steps={glyph.steps}
-        onNarrate={stableNarrate}
-        onStroke={stableStroke}
-        onComplete={() =>
-          onWin(`你亲手写出了“${glyph.character}”，石门打开了！`)
-        }
-      />
+      {glyph ? (
+        <>
+          <div className="cave-narrator">
+            <PinyinLine
+              text={glyph.craftLine}
+              onSpeak={() => void speak(glyph.craftLine)}
+            />
+          </div>
+          <Suspense fallback={<div className="scene-loading">正在点亮造字石台……</div>}>
+            <HanziPractice
+              character={glyph.character}
+              pinyin={glyph.pinyin}
+              steps={glyph.steps}
+              onNarrate={stableNarrate}
+              onStroke={stableStroke}
+              onComplete={() =>
+                onWin(`研姐亲手写出了“${glyph.character}”，石门打开了！`)
+              }
+            />
+          </Suspense>
+        </>
+      ) : (
+        task.challenge && (
+          <ChoiceQuest
+            challenge={task.challenge}
+            npcName="甜甜老师"
+            portrait="👩🏻‍🏫"
+            onComplete={onWin}
+          />
+        )
+      )}
     </section>
   )
 }
@@ -395,27 +335,21 @@ function MarketItemButton({
   )
 }
 
-function MathScene({
-  task,
-  onBack,
+function MarketQuest({
+  math,
   onWin,
 }: {
-  task: LearningTask
-  onBack: () => void
+  math: MarketTask
   onWin: (message: string) => void
 }) {
-  const math = task.math!
   const [basket, setBasket] = useState<string[]>([])
   const [stage, setStage] = useState<'shop' | 'checkout'>('shop')
   const [reply, setReply] = useState('')
 
   useEffect(() => {
-    setBasket([])
-    setStage('shop')
-    setReply('')
-    const timer = window.setTimeout(() => speak(math.story), 650)
+    const timer = window.setTimeout(() => void speak(math.story), 600)
     return () => window.clearTimeout(timer)
-  }, [math, task.id])
+  }, [math])
 
   const selectedItems = math.items.filter((item) => basket.includes(item.id))
   const targetItems = math.items.filter((item) =>
@@ -428,89 +362,53 @@ function MathScene({
     basket.length === math.targetItemIds.length &&
     math.targetItemIds.every((id) => basket.includes(id))
 
-  function toggleItem(item: MarketItem) {
-    if (stage !== 'shop') {
-      return
-    }
-    playNotes([420 + item.price * 22], 0.09)
-    setBasket((items) =>
-      items.includes(item.id)
-        ? items.filter((id) => id !== item.id)
-        : [...items, item.id],
-    )
-  }
-
   function goCheckout() {
     if (!correctBasket) {
-      const message =
+      const text =
         total > math.budget
-          ? '超过预算了，把不在清单里的玩具放回去。'
+          ? '超过预算了，把清单以外的物品放回货架。'
           : '还没有买齐，请再看看购物清单。'
-      setReply(message)
-      speak(message)
-      playNotes([190], 0.16)
+      setReply(text)
+      void speak(text)
+      playNotes([190], 0.14)
       return
     }
-
     setStage('checkout')
-    setReply(`店员：一共 ${targetTotal} 元。你付 ${math.budget} 元，我要找你几元？`)
-    speak(`一共${targetTotal}元。你付${math.budget}元，我要找你几元？`)
+    const text = `一共${targetTotal}元。研姐付${math.budget}元，应该找回几元？`
+    setReply(text)
+    void speak(text)
   }
 
   function answerChange(answer: number) {
     if (answer !== change) {
-      setReply(`${math.budget} 减 ${targetTotal}，再数一数。`)
-      speak(`${math.budget}减${targetTotal}，再数一数。`)
+      const text = `${math.budget}减${targetTotal}，再数一数。`
+      setReply(text)
+      void speak(text)
       playNotes([190, 170], 0.12)
       return
     }
-
     setReply(`答对了！${math.budget} - ${targetTotal} = ${change}。`)
-    speak(`答对了，找你${change}元。欢迎下次光临！`)
+    void speak(`答对了，找回${change}元。`)
     playNotes([523, 659, 784], 0.13)
-    window.setTimeout(
-      () => onWin(`采购完成，还找回了 ${change} 元。`),
-      900,
-    )
+    window.setTimeout(() => onWin(`采购完成，还找回了 ${change} 元。`), 900)
   }
 
   return (
-    <section
-      className={`scene interior-scene market-scene stage-${stage}`}
-      aria-label="玩具超市"
-    >
-      <img
-        className="scene-art market-art"
-        src={sceneBackgrounds.math}
-        alt=""
-        aria-hidden="true"
-      />
-      <div className="interior-vignette" />
-      <SceneHeader
-        title={task.title}
-        subtitle="采购任务 · 20 以内加减法"
-        reward={task.reward}
-        onBack={onBack}
-      />
-
-      <div className="shopkeeper-dialogue">
-        <span className="npc-portrait" aria-hidden="true">
-          👩🏻‍💼
-        </span>
-        <PinyinLine
-          text={
+    <>
+      <NpcDialogue
+        portrait="👩🏻‍💼"
+        text={
+          reply ||
+          `店员姐姐：欢迎研姐！请买${targetItems.map((item) => item.name).join('和')}，你有 ${math.budget} 元。`
+        }
+        onSpeak={() =>
+          void speak(
             reply ||
-            `店员：欢迎光临！请买${targetItems.map((item) => item.name).join('和')}，你有 ${math.budget} 元。`
-          }
-          onSpeak={() =>
-            speak(
-              reply ||
-                `欢迎光临！请买${targetItems.map((item) => item.name).join('和')}，你有${math.budget}元。`,
-            )
-          }
-        />
-      </div>
-
+              `欢迎研姐。请买${targetItems.map((item) => item.name).join('和')}，你有${math.budget}元。`,
+          )
+        }
+        className="shopkeeper-dialogue"
+      />
       <div className="shopping-list">
         <span>
           <small>qīng dān</small>
@@ -522,7 +420,6 @@ function MathScene({
           </strong>
         ))}
       </div>
-
       <div className="market-objects">
         {math.items.map((item, index) => (
           <MarketItemButton
@@ -530,14 +427,23 @@ function MathScene({
             selected={basket.includes(item.id)}
             index={index}
             key={item.id}
-            onToggle={() => toggleItem(item)}
+            onToggle={() => {
+              if (stage === 'checkout') {
+                return
+              }
+              playNotes([420 + item.price * 22], 0.09)
+              setBasket((items) =>
+                items.includes(item.id)
+                  ? items.filter((id) => id !== item.id)
+                  : [...items, item.id],
+              )
+            }}
           />
         ))}
       </div>
-
       {stage === 'shop' ? (
         <div className="basket-console">
-          <div className="basket-items" aria-label="购物篮">
+          <div className="basket-items">
             <ShoppingBasket size={27} />
             <div>
               <small>{selectedItems.length ? 'hé jì' : 'kōng'}</small>
@@ -551,10 +457,7 @@ function MathScene({
           </div>
           <button type="button" className="checkout-button" onClick={goCheckout}>
             <Coins size={20} />
-            <span>
-              <small>qù jié zhàng</small>
-              去结账
-            </span>
+            <span>去结账</span>
           </button>
         </div>
       ) : (
@@ -566,13 +469,9 @@ function MathScene({
             <b>=</b>
             <strong>?</strong>
           </div>
-          <div className="coin-answers" aria-label="选择找零">
+          <div className="coin-answers">
             {[Math.max(0, change - 1), change, change + 1].map((answer) => (
-              <button
-                type="button"
-                key={answer}
-                onClick={() => answerChange(answer)}
-              >
+              <button type="button" key={answer} onClick={() => answerChange(answer)}>
                 <Coins size={21} />
                 <strong>{answer} 元</strong>
               </button>
@@ -580,16 +479,66 @@ function MathScene({
           </div>
         </div>
       )}
+    </>
+  )
+}
+
+function MathScene({
+  task,
+  level,
+  total,
+  onBack,
+  onWin,
+}: {
+  task: LearningTask
+  level: number
+  total: number
+  onBack: () => void
+  onWin: (message: string) => void
+}) {
+  const math = task.math!
+  const isMarket = math.kind === 'market'
+  return (
+    <section
+      className={`scene interior-scene market-scene ${isMarket ? 'market-mode' : 'math-quest-mode'}`}
+      aria-label="生活数学城"
+    >
+      <img className="scene-art market-art" src={sceneBackgrounds.math} alt="" />
+      <div className="interior-vignette" />
+      <SceneHeader
+        title={task.title}
+        subtitle={task.unit}
+        level={level}
+        total={total}
+        reward={task.reward}
+        onBack={onBack}
+      />
+      {isMarket ? (
+        <MarketQuest math={math} onWin={onWin} />
+      ) : (
+        task.challenge && (
+          <ChoiceQuest
+            challenge={task.challenge}
+            npcName="朵朵店长"
+            portrait="👩🏻‍💼"
+            onComplete={onWin}
+          />
+        )
+      )}
     </section>
   )
 }
 
 function EnglishScene({
   task,
+  level,
+  total,
   onBack,
   onWin,
 }: {
   task: LearningTask
+  level: number
+  total: number
   onBack: () => void
   onWin: (message: string) => void
 }) {
@@ -599,37 +548,38 @@ function EnglishScene({
   const [message, setMessage] = useState('')
 
   useEffect(() => {
-    setStage('seek')
-    setPickedIndexes([])
-    setMessage(`探险机器人：${english.clue} Can you find it?`)
+    const englishPrompt = `${english.clue} Can you find it?`
+    const chinesePrompt = `${english.chineseClue} 请找到正确的东西。`
+    setMessage(`Guide Lily: ${englishPrompt} 然后听中文提示。`)
     const timer = window.setTimeout(
-      () => speak(`${english.clue} Can you find it?`, 'en-US'),
-      650,
+      () => void speakEnglishThenChinese(englishPrompt, chinesePrompt),
+      600,
     )
     return () => window.clearTimeout(timer)
-  }, [english, task.id])
+  }, [english])
 
-  const object = englishObjects[english.word] ?? englishObjects.apple
   const candidates = [
-    { emoji: object.wrong[0], value: 'wrong-1' },
-    { emoji: object.emoji, value: object.name },
-    { emoji: object.wrong[1], value: 'wrong-2' },
+    { emoji: english.distractors[0], value: 'wrong-1' },
+    { emoji: english.emoji, value: english.word },
+    { emoji: english.distractors[1], value: 'wrong-2' },
   ]
   const builtWord = pickedIndexes
     .map((index) => english.letters[index])
     .join('')
 
   function findObject(value: string) {
-    if (value !== object.name) {
-      setMessage('探险机器人：Look again. 再看看线索。')
-      speak('Look again.', 'en-US')
+    if (value !== english.word) {
+      setMessage('Guide Lily: Look again. 再听中文提示找一找。')
+      void speakEnglishThenChinese('Look again.', english.chineseClue)
       playNotes([190], 0.13)
       return
     }
-
     setStage('spell')
-    setMessage(`You found an ${english.word}! 听一听，再拼出它。`)
-    speak(`You found an ${english.word}! ${english.sound}.`, 'en-US')
+    setMessage(`Guide Lily: You found it! Spell ${english.word}. 请拼出这个单词。`)
+    void speakEnglishThenChinese(
+      `You found it. Listen: ${english.word}. Spell ${english.word}.`,
+      `找到了。现在按顺序拼出单词${english.word}。`,
+    )
     playNotes([523, 659], 0.12)
   }
 
@@ -637,75 +587,70 @@ function EnglishScene({
     if (pickedIndexes.includes(index)) {
       return
     }
-
     const expected = english.word[builtWord.length]
     if (letter !== expected) {
-      setMessage(`探险机器人：Listen again. ${english.sound}.`)
-      speak(english.sound, 'en-US')
+      setMessage(`Guide Lily: Listen again: ${english.word}. 再听一遍。`)
+      void speakEnglishThenChinese(
+        `Listen again. ${english.word}.`,
+        `下一颗字母不是${letter}，再听一遍。`,
+      )
       playNotes([190], 0.12)
       return
     }
-
     const nextIndexes = [...pickedIndexes, index]
     const nextWord = nextIndexes
       .map((pickedIndex) => english.letters[pickedIndex])
       .join('')
     setPickedIndexes(nextIndexes)
     playNotes([520 + nextIndexes.length * 60], 0.1)
-
     if (nextWord === english.word) {
-      setMessage(`探险机器人：${english.sentence} 宝箱打开了！`)
-      speak(english.sentence, 'en-US')
+      setMessage(`Guide Lily: ${english.sentence} ${english.chineseSentence}`)
+      void speakEnglishThenChinese(english.sentence, english.chineseSentence)
       playNotes([523, 659, 784, 1047], 0.13)
-      window.setTimeout(() => onWin(`你找到了${english.treasure}。`), 1100)
-    } else {
-      setMessage(`探险机器人：Great! 下一颗宝石在哪里？`)
+      window.setTimeout(() => onWin(`研姐找到了${english.treasure}。`), 1300)
     }
   }
 
   return (
     <section
       className={`scene interior-scene treasure-scene stage-${stage}`}
-      aria-label="单词宝窟"
+      aria-label="英语宝藏洞"
     >
-      <img
-        className="scene-art"
-        src={sceneBackgrounds.english}
-        alt=""
-        aria-hidden="true"
-      />
+      <img className="scene-art" src={sceneBackgrounds.english} alt="" />
       <div className="interior-vignette" />
       <SceneHeader
         title={task.title}
-        subtitle="探险任务 · 找实物拼单词"
+        subtitle={`${english.grade}年级 · ${english.theme}`}
+        level={level}
+        total={total}
         reward={task.reward}
         onBack={onBack}
       />
-
       <div className="robot-dialogue">
-        <span className="npc-portrait robot" aria-hidden="true">
-          🤖
-        </span>
+        <span className="npc-portrait english-guide" aria-hidden="true">👩🏽</span>
         <div>
-          <PinyinLine text={message} />
+          <PinyinLine text={message} lang="en-US" />
           <button
             type="button"
             className="listen-button"
             onClick={() =>
-              speak(
-                stage === 'seek' ? english.clue : english.sound,
-                'en-US',
+              void speakEnglishThenChinese(
+                stage === 'seek'
+                  ? `${english.clue} Can you find it?`
+                  : `Listen and spell ${english.word}.`,
+                stage === 'seek'
+                  ? `${english.chineseClue} 请找到正确的东西。`
+                  : `请拼出单词${english.word}。`,
               )
             }
           >
             <Volume2 size={18} />
-            <span>Listen</span>
+            <span>先英后中</span>
           </button>
         </div>
       </div>
-
       {stage === 'seek' ? (
-        <div className="object-hunt" aria-label="寻找线索中的实物">
+        <div className="object-hunt">
           {candidates.map((candidate, index) => (
             <button
               type="button"
@@ -720,20 +665,24 @@ function EnglishScene({
         </div>
       ) : (
         <>
-          <div className="word-lock" aria-label="单词锁">
+          <div
+            className="word-lock"
+            style={{ '--word-length': english.word.length } as React.CSSProperties}
+          >
             {english.word.split('').map((letter, index) => (
               <span key={`${letter}-${index}`}>
                 {builtWord[index]?.toUpperCase() ?? ''}
               </span>
             ))}
           </div>
-          <div className="letter-pedestals" aria-label="字母宝石">
+          <div
+            className="letter-pedestals"
+            style={{ '--letter-count': english.letters.length } as React.CSSProperties}
+          >
             {english.letters.map((letter, index) => (
               <button
                 type="button"
-                className={`letter-gem gem-${index + 1} ${
-                  pickedIndexes.includes(index) ? 'used' : ''
-                }`}
+                className={`letter-gem ${pickedIndexes.includes(index) ? 'used' : ''}`}
                 key={`${letter}-${index}`}
                 onClick={() => pickLetter(letter, index)}
               >
@@ -763,10 +712,18 @@ function CelebrationOverlay({
         <Sparkles size={48} />
         <PinyinLine text={celebration.title} />
         <PinyinLine text={celebration.detail} />
-        <span className="next-level">下一关正在打开…</span>
+        <span className="next-level">下一段冒险正在打开……</span>
       </div>
     </div>
   )
+}
+
+function nextIndexFor(progress: LearnerProgress, subject: SubjectId) {
+  const list = getSubjectTasks(subject)
+  const index = list.findIndex(
+    (task) => !progress.completedTaskIds.includes(task.id),
+  )
+  return index < 0 ? 0 : index
 }
 
 function App() {
@@ -793,11 +750,18 @@ function App() {
   ).length
 
   useEffect(() => {
+    prepareVoices()
     let mounted = true
     void loadProgress().then((loadedProgress) => {
-      if (mounted) {
-        setProgress(loadedProgress)
+      if (!mounted) {
+        return
       }
+      setProgress(loadedProgress)
+      setTaskIndexes({
+        chinese: nextIndexFor(loadedProgress, 'chinese'),
+        math: nextIndexFor(loadedProgress, 'math'),
+        english: nextIndexFor(loadedProgress, 'english'),
+      })
     })
     return () => {
       mounted = false
@@ -811,10 +775,15 @@ function App() {
     if (transitioning) {
       return
     }
+    window.speechSynthesis?.cancel()
     setTransitioning(true)
     playNotes([330, 440, 660], 0.09)
     transitionTimer.current = window.setTimeout(() => {
-      if (nextScene !== 'world') {
+      if (
+        nextScene === 'chinese' ||
+        nextScene === 'math' ||
+        nextScene === 'english'
+      ) {
         setActiveSubject(nextScene)
       }
       setScene(nextScene)
@@ -824,17 +793,14 @@ function App() {
   }
 
   async function completeQuest(message: string) {
-    if (!progress.completedTaskIds.includes(task.id)) {
-      const nextProgress = await recordTaskDone(
-        progress,
-        task.id,
-        task.subject,
-        task.reward,
-      )
-      setProgress(nextProgress)
-    }
-
-    setCelebration({ title: '闯关成功！', detail: message })
+    const nextProgress = await recordTaskDone(
+      progress,
+      task.id,
+      task.subject,
+      task.reward,
+    )
+    setProgress(nextProgress)
+    setCelebration({ title: '研姐闯关成功！', detail: message })
     playNotes([523, 659, 784, 1047], 0.16)
     window.setTimeout(() => {
       setTaskIndexes((current) => ({
@@ -845,6 +811,30 @@ function App() {
     }, 2800)
   }
 
+  async function completePainting() {
+    const next = await recordPainting(progress)
+    setProgress(next)
+    setCelebration({
+      title: '研姐的作品完成了！',
+      detail: '画里的颜色凝成了 2 份宝石粉。',
+    })
+    window.setTimeout(() => setCelebration(null), 2600)
+  }
+
+  async function completeGem(name: string) {
+    const next = await recordGem(progress, name)
+    setProgress(next)
+    setCelebration({
+      title: `${name}诞生了！`,
+      detail: '语文会命名，数学会配比，英语让宝石走向更大的世界。',
+    })
+    playNotes([523, 659, 784, 1047], 0.16)
+    window.setTimeout(() => {
+      setCelebration(null)
+      changeScene('world')
+    }, 3200)
+  }
+
   async function handleReset() {
     const blank = await resetProgress()
     setProgress(blank)
@@ -853,7 +843,7 @@ function App() {
   }
 
   return (
-    <main className={`game-shell scene-${scene}`}>
+    <main className={`game-shell active-scene-${scene}`}>
       {scene === 'world' && (
         <WorldScene
           progress={progress}
@@ -866,6 +856,8 @@ function App() {
         <ChineseScene
           key={task.id}
           task={task}
+          level={taskIndex + 1}
+          total={subjectTasks.length}
           onBack={() => changeScene('world')}
           onWin={(message) => void completeQuest(message)}
         />
@@ -874,6 +866,8 @@ function App() {
         <MathScene
           key={task.id}
           task={task}
+          level={taskIndex + 1}
+          total={subjectTasks.length}
           onBack={() => changeScene('world')}
           onWin={(message) => void completeQuest(message)}
         />
@@ -882,15 +876,30 @@ function App() {
         <EnglishScene
           key={task.id}
           task={task}
+          level={taskIndex + 1}
+          total={subjectTasks.length}
           onBack={() => changeScene('world')}
           onWin={(message) => void completeQuest(message)}
+        />
+      )}
+      {scene === 'art' && (
+        <PaintingScene
+          paintingNumber={progress.paintingsSaved}
+          onBack={() => changeScene('world')}
+          onComplete={() => void completePainting()}
+        />
+      )}
+      {scene === 'gem' && (
+        <GemWorkshopScene
+          recipeIndex={progress.craftedGems.length}
+          onBack={() => changeScene('world')}
+          onComplete={(name) => void completeGem(name)}
         />
       )}
 
       <div className={`portal-transition ${transitioning ? 'active' : ''}`}>
         <span />
       </div>
-
       {celebration && <CelebrationOverlay celebration={celebration} />}
       {parentOpen && (
         <ParentPanel

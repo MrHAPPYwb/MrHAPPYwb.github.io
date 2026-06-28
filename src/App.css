@@ -1455,3 +1455,662 @@ button:focus-visible {
     transition-duration: 1ms !important;
   }
 }
+
+/* Expanded island and curriculum quests */
+
+.world-gate {
+  min-width: 148px;
+  grid-template-columns: 38px minmax(76px, 1fr) 16px;
+}
+
+.gate-label em {
+  color: #ffe9a6;
+  font-size: 9px;
+  font-style: normal;
+  font-weight: 900;
+}
+
+.cave-gate {
+  top: 25%;
+  left: 2%;
+}
+
+.shop-gate {
+  top: 25%;
+  right: 2%;
+}
+
+.gem-gate {
+  top: 45%;
+  left: 50%;
+  z-index: 9;
+  transform: translateX(-50%);
+  animation-delay: 0.25s;
+}
+
+.gem-gate .gate-rune {
+  color: #fff;
+  background: #d74975;
+}
+
+.treasure-gate {
+  top: 61%;
+  left: 2%;
+  right: auto;
+  animation-delay: 0.5s;
+}
+
+.treasure-gate .gate-rune {
+  font-size: 12px;
+}
+
+.art-gate {
+  top: 61%;
+  right: 2%;
+  animation-delay: 0.75s;
+}
+
+.art-gate .gate-rune {
+  font-size: 17px;
+  background: #7de3b2;
+}
+
+.world-guide {
+  bottom: calc(24px + env(safe-area-inset-bottom));
+}
+
+.npc-dialogue {
+  position: absolute;
+  top: calc(78px + env(safe-area-inset-top));
+  left: 50%;
+  z-index: 12;
+  width: min(91%, 410px);
+  min-height: 76px;
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr);
+  gap: 9px;
+  align-items: center;
+  transform: translateX(-50%);
+  padding: 8px 10px;
+  border: 1px solid rgba(255, 235, 177, 0.62);
+  border-radius: 8px;
+  color: #fff;
+  background: rgba(9, 34, 35, 0.85);
+  box-shadow: 0 8px 26px rgba(9, 5, 2, 0.38);
+  backdrop-filter: blur(9px);
+}
+
+.npc-dialogue .pinyin-line {
+  padding-right: 34px;
+}
+
+.choice-quest {
+  position: absolute;
+  inset: 0;
+  z-index: 7;
+}
+
+.scene-loading {
+  position: absolute;
+  top: 48%;
+  left: 50%;
+  z-index: 8;
+  width: max-content;
+  max-width: 82%;
+  padding: 10px 14px;
+  transform: translate(-50%, -50%);
+  border: 1px solid rgba(255, 239, 180, 0.72);
+  border-radius: 8px;
+  color: #fff5c8;
+  background: rgba(38, 20, 12, 0.82);
+  font-weight: 900;
+}
+
+.choice-quest .npc-dialogue {
+  top: calc(78px + env(safe-area-inset-top));
+}
+
+.challenge-stage {
+  position: absolute;
+  top: 27%;
+  left: 50%;
+  width: min(90%, 390px);
+  min-height: 55%;
+  display: grid;
+  align-content: center;
+  gap: 12px;
+  transform: translateX(-50%);
+}
+
+.challenge-unit {
+  min-height: 126px;
+  display: grid;
+  place-items: center;
+  padding: 15px;
+  border: 2px solid rgba(255, 245, 193, 0.8);
+  border-radius: 8px;
+  color: #fff8cf;
+  background:
+    radial-gradient(circle, rgba(255, 225, 106, 0.18), transparent 70%),
+    rgba(13, 31, 35, 0.72);
+  box-shadow: 0 0 28px rgba(255, 225, 106, 0.22);
+  font-size: 34px;
+  font-weight: 900;
+  line-height: 1.4;
+  text-align: center;
+  white-space: pre-line;
+}
+
+.challenge-question {
+  display: grid;
+  padding: 9px 13px;
+  border-left: 5px solid #ffe16a;
+  border-radius: 4px;
+  color: #173c33;
+  background: rgba(255, 252, 225, 0.96);
+  box-shadow: 0 7px 18px rgba(9, 15, 18, 0.32);
+}
+
+.challenge-question small {
+  color: #0f766e;
+  font-size: 9px;
+  font-weight: 900;
+}
+
+.challenge-question strong {
+  font-size: 16px;
+  line-height: 1.35;
+}
+
+.choice-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px;
+}
+
+.choice-grid.options-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.choice-grid button {
+  min-height: 66px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 7px;
+  border: 2px solid #fff;
+  color: #173c55;
+  background: #d9f5ff;
+  box-shadow: 0 7px 16px rgba(5, 19, 31, 0.3);
+  font-size: 15px;
+  font-weight: 900;
+}
+
+.choice-grid button:nth-child(2n) {
+  color: #6b3c0f;
+  background: #fff0a8;
+}
+
+.choice-grid button.selected {
+  transform: translateY(-3px);
+  border-color: #ff7d61;
+}
+
+.choice-grid button.correct {
+  color: #fff;
+  background: #159b71;
+  animation: seal-pop 450ms ease both;
+}
+
+.math-quest-mode .npc-dialogue {
+  background: rgba(9, 52, 46, 0.88);
+}
+
+.math-quest-mode .challenge-unit {
+  color: #173c33;
+  background: rgba(255, 249, 220, 0.95);
+  border-color: #fff;
+}
+
+.english-guide {
+  background: #f8c7a5;
+}
+
+.word-lock {
+  max-width: 92%;
+}
+
+.word-lock span {
+  width: clamp(34px, calc(280px / var(--word-length)), 48px);
+  height: clamp(42px, calc(320px / var(--word-length)), 52px);
+  font-size: clamp(19px, calc(140px / var(--word-length)), 25px);
+}
+
+.letter-pedestals {
+  inset: auto 7% calc(5% + env(safe-area-inset-bottom));
+  display: grid;
+  grid-template-columns: repeat(var(--letter-count), minmax(42px, 64px));
+  justify-content: center;
+  gap: clamp(5px, 2vw, 10px);
+}
+
+.letter-gem {
+  position: relative;
+  width: min(13vw, 62px);
+  height: min(13vw, 62px);
+  min-height: min(13vw, 62px);
+  inset: auto;
+  margin: 0;
+}
+
+.painting-dialogue {
+  top: calc(78px + env(safe-area-inset-top));
+  background: rgba(15, 82, 75, 0.83);
+}
+
+.paint-canvas {
+  position: absolute;
+  top: 32.7%;
+  left: 22.3%;
+  z-index: 8;
+  width: 50.8%;
+  height: 32.8%;
+  border: 0;
+  border-radius: 2px;
+  touch-action: none;
+  cursor: crosshair;
+}
+
+.painting-tools {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: calc(10px + env(safe-area-inset-bottom));
+  z-index: 14;
+  display: grid;
+  gap: 8px;
+  padding: 9px;
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  border-radius: 8px;
+  background: rgba(18, 54, 45, 0.84);
+  box-shadow: 0 8px 24px rgba(4, 18, 18, 0.42);
+  backdrop-filter: blur(8px);
+}
+
+.paint-swatches,
+.paint-actions {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.paint-swatches button {
+  width: 34px;
+  min-height: 34px;
+  border: 3px solid rgba(255, 255, 255, 0.74);
+  border-radius: 50%;
+}
+
+.paint-swatches button.active {
+  border-color: #fff;
+  transform: scale(1.15);
+  box-shadow: 0 0 0 3px #ffe16a;
+}
+
+.paint-actions button {
+  min-width: 48px;
+  min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  color: #173c55;
+  background: #e3f8ff;
+}
+
+.paint-actions button.active {
+  color: #fff;
+  background: #0f8d75;
+}
+
+.paint-actions .finish-painting {
+  flex: 1;
+  color: #693800;
+  background: #ffe16a;
+  font-weight: 900;
+}
+
+.gem-dialogue {
+  top: calc(78px + env(safe-area-inset-top));
+  background: rgba(53, 28, 61, 0.88);
+}
+
+.gem-language-station,
+.ore-station,
+.gem-spell-station,
+.polish-station {
+  position: absolute;
+  left: 50%;
+  top: 47%;
+  z-index: 10;
+  width: min(90%, 400px);
+  transform: translateX(-50%);
+}
+
+.ancient-riddle {
+  min-height: 108px;
+  display: grid;
+  place-content: center;
+  gap: 5px;
+  padding: 12px;
+  border: 2px solid #ffe49a;
+  border-radius: 8px;
+  color: #fff8d8;
+  background: rgba(52, 29, 21, 0.84);
+  box-shadow: 0 0 26px rgba(255, 211, 105, 0.34);
+  text-align: center;
+}
+
+.ancient-riddle span {
+  color: #ffd15c;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.ancient-riddle strong {
+  font-size: 17px;
+}
+
+.rune-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.rune-options button {
+  min-height: 86px;
+  border: 3px solid #fff0b5;
+  color: #552f1d;
+  background: #ffe09b;
+  box-shadow: 0 8px 18px rgba(37, 19, 10, 0.38);
+  font-size: 42px;
+  font-weight: 900;
+}
+
+.ore-equation {
+  min-height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 2px solid #fff;
+  border-radius: 8px;
+  color: #343044;
+  background: rgba(255, 250, 227, 0.95);
+  font-size: 27px;
+  font-weight: 900;
+}
+
+.ore-equation strong {
+  color: #d43c69;
+}
+
+.ore-trays {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.ore-trays button {
+  min-height: 100px;
+  display: grid;
+  place-items: center;
+  border: 3px solid #fff;
+  color: #fff;
+  box-shadow: 0 8px 18px rgba(22, 12, 31, 0.4);
+}
+
+.red-ore {
+  background: #d94b70;
+}
+
+.blue-ore {
+  background: #168dcc;
+}
+
+.ore-actions {
+  display: grid;
+  grid-template-columns: 1fr 1.35fr;
+  gap: 9px;
+  margin-top: 10px;
+}
+
+.ore-actions button {
+  color: #173c55;
+  background: #e7f8ff;
+  font-weight: 900;
+}
+
+.ore-actions .fuse-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: #572f00;
+  background: #ffd45d;
+}
+
+.word-listen {
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  margin: 0 auto;
+  padding: 0 18px;
+  color: #17445a;
+  background: #c7f5ff;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.gem-word-lock,
+.gem-letter-bank {
+  display: flex;
+  justify-content: center;
+  gap: 9px;
+  margin-top: 12px;
+}
+
+.gem-word-lock span,
+.gem-letter-bank button {
+  width: 58px;
+  height: 62px;
+  display: grid;
+  place-items: center;
+  border: 2px solid #ffe16a;
+  border-radius: 8px;
+  color: #fff;
+  background: rgba(42, 35, 75, 0.88);
+  font-size: 27px;
+  font-weight: 900;
+}
+
+.gem-letter-bank button {
+  transform: rotate(45deg) scale(0.78);
+  border-color: #fff;
+  background: #277fc4;
+}
+
+.gem-letter-bank button.used {
+  opacity: 0.25;
+}
+
+.polish-station {
+  top: 45%;
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+}
+
+.raw-gem {
+  position: relative;
+  width: 190px;
+  height: 190px;
+  display: grid;
+  place-items: center;
+  touch-action: none;
+  color: var(--gem-color);
+  border: 4px solid rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  background: rgba(22, 28, 37, 0.6);
+  filter: brightness(var(--polish)) saturate(var(--polish));
+  box-shadow:
+    inset 0 0 38px rgba(255, 255, 255, 0.28),
+    0 0 40px var(--gem-color);
+}
+
+.raw-gem svg {
+  filter: drop-shadow(0 0 18px var(--gem-color));
+}
+
+.gem-check {
+  position: absolute;
+  right: 16px;
+  top: 14px;
+  padding: 6px;
+  border-radius: 50%;
+  color: #164e3a;
+  background: #fff5a9;
+}
+
+.polish-meter {
+  width: 230px;
+  height: 12px;
+  overflow: hidden;
+  border: 2px solid #fff;
+  border-radius: 99px;
+  background: rgba(8, 16, 24, 0.68);
+}
+
+.polish-meter span {
+  display: block;
+  height: 100%;
+  background: #ffe16a;
+  box-shadow: 0 0 15px #ffe16a;
+}
+
+.polish-station > strong {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  border-radius: 8px;
+  color: #fff8d8;
+  background: rgba(46, 24, 31, 0.8);
+}
+
+.coverage-list {
+  display: grid;
+  gap: 7px;
+  margin-top: 12px;
+}
+
+.coverage-list > div {
+  display: grid;
+  grid-template-columns: 44px 44px 1fr;
+  align-items: center;
+  gap: 7px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.coverage-list i {
+  height: 8px;
+  overflow: hidden;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.coverage-list i span {
+  display: block;
+  height: 100%;
+  background: #5ee1bd;
+}
+
+@media (max-width: 380px), (max-height: 730px) {
+  .world-gate {
+    min-width: 132px;
+    min-height: 52px;
+    grid-template-columns: 32px minmax(68px, 1fr) 14px;
+    padding: 4px 7px 4px 4px;
+  }
+
+  .gate-rune {
+    width: 32px;
+    height: 32px;
+    font-size: 15px;
+  }
+
+  .gate-label strong {
+    font-size: 11px;
+  }
+
+  .gate-label small,
+  .gate-label em {
+    font-size: 7px;
+  }
+
+  .cave-gate,
+  .shop-gate {
+    top: 24%;
+  }
+
+  .gem-gate {
+    top: 44%;
+  }
+
+  .treasure-gate,
+  .art-gate {
+    top: 60%;
+  }
+
+  .challenge-stage {
+    top: 24%;
+    transform: translateX(-50%) scale(0.92);
+  }
+
+  .challenge-unit {
+    min-height: 104px;
+  }
+
+  .paint-canvas {
+    top: 32.5%;
+  }
+
+  .painting-tools {
+    gap: 5px;
+    padding: 6px;
+  }
+
+  .paint-swatches button {
+    width: 29px;
+    min-height: 29px;
+  }
+
+  .gem-language-station,
+  .ore-station,
+  .gem-spell-station {
+    top: 43%;
+    transform: translateX(-50%) scale(0.92);
+  }
+
+  .polish-station {
+    top: 42%;
+    transform: translateX(-50%) scale(0.86);
+  }
+}

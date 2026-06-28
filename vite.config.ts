@@ -15,9 +15,9 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg', 'pwa-icon.svg'],
       manifest: {
-        name: '彩虹任务岛',
-        short_name: '任务岛',
-        description: '一年级语文、数学、英语的每日学习小游戏',
+        name: '研姐的宝石任务岛',
+        short_name: '研姐任务岛',
+        description: '一年级语文数学、低年级英语、绘画与宝石制造沉浸式学习游戏',
         start_url: appBase,
         scope: appBase,
         display: 'standalone',
