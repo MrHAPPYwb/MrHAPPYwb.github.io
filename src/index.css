@@ -1,9 +1,9 @@
 :root {
-  --bg: #f8fcff;
-  --surface: #ffffff;
-  --line: #dbe4ee;
-  --text: #0f172a;
-  --muted: #64748b;
+  --bg: #150f2a;
+  --surface: #fff8ff;
+  --line: #ead7f4;
+  --text: #28153f;
+  --muted: #725d83;
   color: var(--text);
   background: var(--bg);
   font-family:
@@ -24,13 +24,14 @@
 
 html {
   background: var(--bg);
+  overscroll-behavior: none;
 }
 
 body {
   min-width: 320px;
   margin: 0;
-  background:
-    linear-gradient(180deg, #eff6ff 0%, #f8fcff 26%, #f8fcff 100%);
+  background: var(--bg);
+  overscroll-behavior: none;
 }
 
 #root {
