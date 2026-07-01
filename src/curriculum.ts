@@ -676,8 +676,9 @@ function questionsForStage(course: LevelSeed[], levelIndex: number) {
     Math.floor((levelIndex * course.length) / 100),
   )
   const current = course[currentIndex]
-  const reviewIndex =
-    currentIndex === 0 ? 0 : (levelIndex * 7 + currentIndex) % currentIndex
+  const reviewIndex = currentIndex === 0
+    ? Math.min(course.length - 1, levelIndex + 1)
+    : (levelIndex * 7 + currentIndex) % currentIndex
   const review = course[reviewIndex]
   const rotation = levelIndex % 3
 

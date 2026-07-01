@@ -687,34 +687,38 @@ export function MinerGame({
   return (
     <section className="miner-game" aria-label={`第 ${level.id} 关水晶矿洞`}>
       <div className="phaser-host" ref={gameHostRef} />
-      <header className="mine-info-stack" aria-label="关卡信息">
-        <div className="mine-info-box">
-          <Flag size={17} />
-          <span>
-            <small>关卡</small>
-            <strong>{level.id}/100</strong>
-          </span>
+      <header className="mine-hud" aria-label="关卡信息">
+        <div className="mine-hud-group">
+          <div className="mine-info-box">
+            <Flag size={16} />
+            <span>
+              <small>关卡</small>
+              <strong>{level.id}/100</strong>
+            </span>
+          </div>
+          <div className="mine-info-box">
+            <Gem size={16} />
+            <span>
+              <small>知识宝石</small>
+              <strong>{hud.correct}/{hud.target}</strong>
+            </span>
+          </div>
         </div>
-        <div className="mine-info-box">
-          <Gem size={17} />
-          <span>
-            <small>知识宝石</small>
-            <strong>{hud.correct}/{hud.target}</strong>
-          </span>
-        </div>
-        <div className="mine-info-box time-info-box">
-          <Clock3 size={18} />
-          <span>
-            <small>读秒</small>
-            <strong>{hud.time}</strong>
-          </span>
-        </div>
-        <div className="mine-info-box score-info-box">
-          <Star size={17} />
-          <span>
-            <small>{hud.combo > 1 ? `连击 ×${hud.combo}` : '积分'}</small>
-            <strong>{hud.score}</strong>
-          </span>
+        <div className="mine-hud-group">
+          <div className="mine-info-box score-info-box">
+            <Star size={16} />
+            <span>
+              <small>{hud.combo > 1 ? `连击 ×${hud.combo}` : '得分'}</small>
+              <strong>{hud.score}</strong>
+            </span>
+          </div>
+          <div className="mine-info-box time-info-box">
+            <Clock3 size={16} />
+            <span>
+              <small>读秒</small>
+              <strong>{hud.time}</strong>
+            </span>
+          </div>
         </div>
       </header>
       <div className="tap-ripple" aria-hidden="true">

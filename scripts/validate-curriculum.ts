@@ -20,10 +20,30 @@ assert(subjectCounts.chinese === 120, 'Chinese pool must contain 120 variants')
 assert(subjectCounts.math === 120, 'Math pool must contain 120 variants')
 assert(subjectCounts.english === 60, 'English pool must contain 60 variants')
 assert(levels.filter((level) => level.rewardColor).length === 100, 'Every level must award a gem')
+assert(
+  new Set(
+    levels.map((level) =>
+      level.questions.map((question) => question.id).sort().join('|'),
+    ),
+  ).size === levels.length,
+  'Every level must have a unique nine-question set',
+)
 for (let start = 0; start < levels.length; start += 5) {
   assert(
     new Set(levels.slice(start, start + 5).map((level) => level.rewardColor)).size === 5,
     `Levels ${start + 1}-${start + 5} must award all five gem colors`,
+  )
+}
+for (let index = 1; index < levels.length; index += 1) {
+  const previousIds = new Set(
+    levels[index - 1].questions.map((question) => question.id),
+  )
+  const overlap = levels[index].questions.filter((question) =>
+    previousIds.has(question.id),
+  ).length
+  assert(
+    overlap <= 3,
+    `Levels ${index} and ${index + 1} repeat too many questions`,
   )
 }
 
