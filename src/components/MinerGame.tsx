@@ -9,7 +9,6 @@ import {
   type Level,
   type Question,
 } from '../curriculum'
-import { renderChestTexture, renderGemTexture, renderOreTexture } from '../gem3d'
 import type { TreasureReward } from '../storage'
 
 type HudState = {
@@ -24,23 +23,34 @@ type HudState = {
 type SceneController = {
   resolveAnswer: (correct: boolean) => void
   wrongAttempt: () => void
+  resolveTreasure: () => void
 }
 
 const gemColors = Object.keys(gemMeta) as GemColor[]
-const subjectGemColors: Record<Question['subject'], GemColor[]> = {
-  chinese: ['ruby', 'amethyst', 'citrine'],
-  math: ['emerald', 'citrine', 'sapphire'],
-  english: ['sapphire', 'amethyst', 'emerald'],
+const gemTintPalette: Record<GemColor, [number, number, number, number]> = {
+  ruby: [0xffb0c5, 0xffffff, 0xff4778, 0xff8fb0],
+  sapphire: [0xa8e8ff, 0xffffff, 0x35b7ff, 0x73d3ff],
+  emerald: [0xa8ffe0, 0xffffff, 0x35d991, 0x70efba],
+  amethyst: [0xe2c4ff, 0xffffff, 0xa968ff, 0xcf9aff],
+  citrine: [0xffefad, 0xffffff, 0xffb72e, 0xffd66f],
 }
-const subjectBadge = { chinese: '语', math: '数', english: 'EN' }
 
 const treasureMeta: Record<
   TreasureReward,
   { name: string; detail: string }
 > = {
-  'star-sticker': { name: '星光贴纸', detail: '放进研姐的收藏册' },
-  'forge-spark': { name: '锻造星火', detail: '以后每次敲打更有力量' },
-  'time-crystal': { name: '时间水晶', detail: '本关增加 30 秒' },
+  'star-sticker': {
+    name: '星光贴纸',
+    detail: '已经放进收藏册。以后集齐一套，可以装饰矿车和通关相册。',
+  },
+  'forge-spark': {
+    name: '锻造星火',
+    detail: '已经存进锻造炉。拥有的星火越多，每次敲打钻石的进度越快。',
+  },
+  'time-crystal': {
+    name: '时间水晶',
+    detail: '立即为本关增加 30 秒。以后进入更深矿层时，也能用来补充时间。',
+  },
 }
 
 function treasureForLevel(levelId: number): TreasureReward {
@@ -98,13 +108,7 @@ function QuizOverlay({
       <div className={`quiz-crystal subject-${question.subject}`}>
         <div className="quiz-subject">
           <Gem size={18} />
-          <span>
-            {question.subject === 'chinese'
-              ? '语文晶核'
-              : question.subject === 'math'
-                ? '数学晶核'
-                : 'English Gem'}
-          </span>
+          <span>知识晶核</span>
         </div>
         <div className="quiz-cue">{question.cue}</div>
         <div className="quiz-prompt">
@@ -140,15 +144,31 @@ function QuizOverlay({
   )
 }
 
-function TreasureToast({ reward }: { reward: TreasureReward }) {
+function TreasureDialog({
+  reward,
+  onConfirm,
+}: {
+  reward: TreasureReward
+  onConfirm: () => void
+}) {
   return (
-    <div className="treasure-toast" role="status">
-      <div><Gift size={28} /><Star size={15} /></div>
-      <span>
-        <small>宝箱打开啦</small>
-        <strong>{treasureMeta[reward].name}</strong>
-        <em>{treasureMeta[reward].detail}</em>
-      </span>
+    <div className="treasure-veil" role="dialog" aria-label="宝箱奖励">
+      <div className="treasure-dialog">
+        <div className="treasure-dialog-title">
+          <Gift size={20} />
+          <span>神秘宝箱打开啦</span>
+        </div>
+        <img src="assets/crystal-chest-v2.webp" alt="" />
+        <div className="treasure-reward-name">
+          <Star size={22} />
+          <strong>{treasureMeta[reward].name}</strong>
+        </div>
+        <p>{treasureMeta[reward].detail}</p>
+        <button type="button" onClick={onConfirm}>
+          <Gift size={20} />
+          <span>收进背包</span>
+        </button>
+      </div>
     </div>
   )
 }
@@ -202,6 +222,18 @@ export function MinerGame({
 
     setActiveQuestion(null)
     setTreasureReward(null)
+    if (import.meta.env.DEV) {
+      const qaTreasure = new URLSearchParams(window.location.search).get(
+        'qaTreasure',
+      )
+      if (
+        qaTreasure === 'star-sticker' ||
+        qaTreasure === 'forge-spark' ||
+        qaTreasure === 'time-crystal'
+      ) {
+        setTreasureReward(qaTreasure)
+      }
+    }
     setHud({
       correct: 0,
       target: level.target,
@@ -231,7 +263,13 @@ export function MinerGame({
       private ropeLength = 62
       private launchElapsed = 0
       private ropeVelocity = 0
-      private phase: 'swing' | 'extend' | 'retract' | 'quiz' | 'done' = 'swing'
+      private phase:
+        | 'swing'
+        | 'extend'
+        | 'retract'
+        | 'quiz'
+        | 'treasure'
+        | 'done' = 'swing'
       private caught: MineItem | null = null
       private correct = 0
       private combo = 0
@@ -244,7 +282,10 @@ export function MinerGame({
 
       preload() {
         this.load.image('crystal-mine-bg', 'assets/crystal-mine-v1.webp')
-        this.load.image('fluffy-paw-claw', 'assets/fluffy-paw-claw-v1.webp')
+        this.load.image('metal-diamond-claw', 'assets/metal-diamond-claw-v1.webp')
+        this.load.image('knowledge-diamond', 'assets/knowledge-diamond-v2.webp')
+        this.load.image('mine-ore', 'assets/crystal-ore-v2.webp')
+        this.load.image('treasure-chest', 'assets/crystal-chest-v2.webp')
       }
 
       create() {
@@ -252,25 +293,6 @@ export function MinerGame({
         background.setDisplaySize(390, 844)
         background.setDepth(-5)
 
-        gemColors.forEach((color) => {
-          if (!this.textures.exists(`gem-${color}`)) {
-            this.textures.addCanvas(
-              `gem-${color}`,
-              renderGemTexture(gemMeta[color].hex, 180),
-              true,
-            )
-          }
-        })
-        if (!this.textures.exists('mine-ore')) {
-          this.textures.addCanvas('mine-ore', renderOreTexture(192), true)
-        }
-        if (!this.textures.exists('treasure-chest')) {
-          this.textures.addCanvas(
-            'treasure-chest',
-            renderChestTexture(220),
-            true,
-          )
-        }
         this.createHook()
         this.spawnField()
 
@@ -287,6 +309,10 @@ export function MinerGame({
 
         controllerRef.current = {
           resolveAnswer: (correct) => this.resolveAnswer(correct),
+          resolveTreasure: () => {
+            setTreasureReward(null)
+            this.phase = 'swing'
+          },
           wrongAttempt: () => {
             this.combo = 0
             setHud((current) => ({
@@ -300,10 +326,12 @@ export function MinerGame({
 
       private createHook() {
         this.rope = this.add.graphics().setDepth(9)
-        const paw = this.add.image(0, 0, 'fluffy-paw-claw')
-        paw.setDisplaySize(54, 86)
-        paw.setOrigin(0.5, 0.22)
-        this.hook = this.add.container(this.anchor.x, this.anchor.y + 62, [paw])
+        const claw = this.add.image(0, 0, 'metal-diamond-claw')
+        claw.setDisplaySize(56, 86)
+        claw.setOrigin(0.5, 0.2)
+        this.hook = this.add.container(this.anchor.x, this.anchor.y + 62, [
+          claw,
+        ])
         this.hook.setDepth(10)
       }
 
@@ -342,43 +370,31 @@ export function MinerGame({
           positions.push({ x, y })
 
           const spec = specs[index]
-          const subjectIndex = spec.question
-            ? questionPool
-                .filter((question) => question.subject === spec.question?.subject)
-                .findIndex((question) => question.id === spec.question?.id)
-            : 0
           const color = spec.question
-            ? subjectGemColors[spec.question.subject][Math.max(0, subjectIndex) % 3]
+            ? gemColors[(index * 2 + level.id) % gemColors.length]
             : undefined
           const texture =
             spec.kind === 'gem'
-              ? `gem-${color}`
+              ? 'knowledge-diamond'
               : spec.kind === 'ore'
                 ? 'mine-ore'
                 : 'treasure-chest'
           const image = this.add.image(0, 0, texture)
-          const scale =
-            spec.kind === 'gem'
-              ? Phaser.Math.FloatBetween(0.41, 0.5)
-              : spec.kind === 'ore'
-                ? Phaser.Math.FloatBetween(0.48, 0.6)
-                : 0.48
-          image.setScale(scale)
-          const children: Phaser.GameObjects.GameObject[] = [image]
-          if (spec.question) {
-            const badge = this.add
-              .text(0, 0, subjectBadge[spec.question.subject], {
-                color: '#ffffff',
-                fontFamily: '"PingFang SC", "Microsoft YaHei", sans-serif',
-                fontSize: spec.question.subject === 'english' ? '10px' : '13px',
-                fontStyle: 'bold',
-                stroke: '#34204f',
-                strokeThickness: 4,
-              })
-              .setOrigin(0.5)
-            children.push(badge)
+          let radius = 36
+          if (spec.kind === 'gem' && color) {
+            const width = Phaser.Math.Between(48, 72)
+            image.setDisplaySize(width, Math.round(width * 0.85))
+            image.setTint(...gemTintPalette[color])
+            radius = width * 0.44
+          } else if (spec.kind === 'ore') {
+            const width = Phaser.Math.Between(76, 100)
+            image.setDisplaySize(width, Math.round(width * 1.03))
+            radius = width * 0.42
+          } else {
+            image.setDisplaySize(94, 84)
+            radius = 42
           }
-          const sprite = this.add.container(x, y, children)
+          const sprite = this.add.container(x, y, [image])
           sprite.setDepth(3 + Math.round(y / 200))
           if (spec.kind !== 'ore') {
             this.tweens.add({
@@ -395,12 +411,7 @@ export function MinerGame({
             sprite,
             color,
             question: spec.question,
-            radius:
-              spec.kind === 'gem'
-                ? 64 * scale
-                : spec.kind === 'ore'
-                  ? 76 * scale
-                  : 42,
+            radius,
             weight: spec.kind === 'ore' ? 2.4 : spec.kind === 'chest' ? 1.55 : 1,
             value: spec.kind === 'ore' ? 20 : spec.kind === 'chest' ? 80 : 100,
             kind: spec.kind,
@@ -442,7 +453,7 @@ export function MinerGame({
               ? '抓到发光矿石，有点重！'
               : item.kind === 'chest'
                 ? '神秘宝箱正在拉上来！'
-                : `抓到${subjectBadge[item.question?.subject ?? 'chinese']}科知识钻石！`,
+                : '抓到一颗晶莹的知识钻石！',
         }))
       }
 
@@ -507,11 +518,10 @@ export function MinerGame({
         onTreasureRef.current(level.id, reward)
         setTreasureReward(reward)
         void speakUi(`treasure-${reward}`)
-        window.setTimeout(() => setTreasureReward(null), 1900)
         this.caught?.sprite.destroy()
         this.items = this.items.filter((item) => item !== this.caught)
         this.caught = null
-        this.phase = 'swing'
+        this.phase = 'treasure'
         setHud((current) => ({
           ...current,
           score: this.score,
@@ -525,7 +535,7 @@ export function MinerGame({
           return
         }
         const seconds = delta / 1000
-        if (this.phase !== 'quiz') {
+        if (this.phase !== 'quiz' && this.phase !== 'treasure') {
           this.remaining -= seconds
           if (this.remaining <= 0) {
             this.remaining = 25
@@ -682,18 +692,18 @@ export function MinerGame({
           <small>LEVEL</small>
           <strong>{level.id}/100</strong>
         </div>
-        <div className="target-pill">
-          <Gem size={19} />
-          <span>
-            <small>{hud.hint}</small>
-            <strong>{hud.correct}/{hud.target}</strong>
-          </span>
-        </div>
         <div className="time-pill">
           <Clock3 size={18} />
           <strong>{hud.time}</strong>
         </div>
       </header>
+      <div className="target-pill mine-target">
+        <Gem size={18} />
+        <span>
+          <small>知识钻石</small>
+          <strong>{hud.correct}/{hud.target}</strong>
+        </span>
+      </div>
       <div className="mine-score">
         {hud.combo > 1 ? `COMBO ×${hud.combo}` : `${hud.score} 分`}
       </div>
@@ -713,7 +723,12 @@ export function MinerGame({
           onSolved={() => controllerRef.current?.resolveAnswer(true)}
         />
       )}
-      {treasureReward && <TreasureToast reward={treasureReward} />}
+      {treasureReward && (
+        <TreasureDialog
+          reward={treasureReward}
+          onConfirm={() => controllerRef.current?.resolveTreasure()}
+        />
+      )}
     </section>
   )
 }

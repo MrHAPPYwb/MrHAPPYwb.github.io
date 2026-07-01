@@ -99,6 +99,7 @@ export function CrystalForge({
           colors={allColors}
           shape={unlocked ? shape : undefined}
           progress={hammering}
+          environmentUrl={`${import.meta.env.BASE_URL}assets/crystal-forge-v1.webp`}
         />
         {impact > 0 && hammering < 100 && <span className="impact-burst" />}
       </div>

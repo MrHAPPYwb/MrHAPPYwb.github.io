@@ -19,9 +19,35 @@ function gemMesh(
   position: [number, number, number],
 ) {
   const mesh = new THREE.Mesh(geometry, createGemMaterial(color, true))
+  addCrystalLayers(mesh, geometry, color)
   mesh.scale.set(...scale)
   mesh.position.set(...position)
   return mesh
+}
+
+function addCrystalLayers(
+  mesh: THREE.Mesh,
+  geometry: THREE.BufferGeometry,
+  color: number,
+) {
+  const core = new THREE.Mesh(geometry.clone(), createGemCoreMaterial(color))
+  core.scale.setScalar(0.72)
+  mesh.add(core)
+
+  const facets = new THREE.Mesh(
+    geometry.clone(),
+    new THREE.MeshBasicMaterial({
+      color: 0xffffff,
+      transparent: true,
+      opacity: 0.2,
+      wireframe: true,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false,
+      toneMapped: false,
+    }),
+  )
+  facets.scale.setScalar(1.012)
+  mesh.add(facets)
 }
 
 function createSculpture(shape: ForgeShape, colors: number[]) {
@@ -75,11 +101,13 @@ export function CrystalStage({
   shape,
   progress = 100,
   className = '',
+  environmentUrl,
 }: {
   colors: GemColor[]
   shape?: ForgeShape
   progress?: number
   className?: string
+  environmentUrl?: string
 }) {
   const hostRef = useRef<HTMLDivElement>(null)
   const progressRef = useRef(progress)
@@ -103,7 +131,25 @@ export function CrystalStage({
     const camera = new THREE.PerspectiveCamera(36, 1, 0.1, 100)
     camera.position.set(0, 0.15, 6.2)
     addGemLighting(scene)
-    const environment = addCrystalEnvironment(scene, renderer)
+    let environment = addCrystalEnvironment(scene, renderer)
+    let disposed = false
+    if (environmentUrl) {
+      new THREE.TextureLoader().load(environmentUrl, (source) => {
+        if (disposed) {
+          source.dispose()
+          return
+        }
+        source.colorSpace = THREE.SRGBColorSpace
+        source.mapping = THREE.EquirectangularReflectionMapping
+        const generator = new THREE.PMREMGenerator(renderer)
+        const matchedEnvironment = generator.fromEquirectangular(source).texture
+        generator.dispose()
+        source.dispose()
+        environment.dispose()
+        environment = matchedEnvironment
+        scene.environment = environment
+      })
+    }
 
     const palette = colors.map((color) => gemHexColors[color])
     const diamondGeometry = createDiamondGeometry(1.25, 2.7, 12)
@@ -111,11 +157,10 @@ export function CrystalStage({
       diamondGeometry,
       createGemMaterial(palette[0] ?? gemHexColors.ruby),
     )
-    diamond.add(
-      new THREE.Mesh(
-        createDiamondGeometry(0.86, 1.86, 12),
-        createGemCoreMaterial(palette[0] ?? gemHexColors.ruby),
-      ),
+    addCrystalLayers(
+      diamond,
+      diamondGeometry,
+      palette[0] ?? gemHexColors.ruby,
     )
     diamond.rotation.x = 0.16
     scene.add(diamond)
@@ -128,6 +173,7 @@ export function CrystalStage({
           createDiamondGeometry(0.55, 1.2, 10),
           createGemMaterial(color),
         )
+        addCrystalLayers(loose, loose.geometry, color)
         const angle = (index / palette.length) * Math.PI * 2 - Math.PI / 2
         loose.position.set(Math.cos(angle) * 1.45, Math.sin(angle) * 1.08, 0)
         loose.rotation.set(0.2, index * 0.7, 0)
@@ -180,9 +226,9 @@ export function CrystalStage({
             .material as THREE.MeshPhysicalMaterial
           material.roughness = 0.2 - reveal * 0.185
           material.transmission = 0.68 + reveal * 0.32
-          material.thickness = 1.1 + reveal * 0.75
-          material.dispersion = 0.02 + reveal * 0.1
-          material.envMapIntensity = 1.8 + reveal * 1.4
+        material.thickness = 1.1 + reveal * 0.75
+          material.dispersion = 0.06 + reveal * 0.12
+          material.envMapIntensity = 2.4 + reveal * 1.6
         })
         sculpture.rotation.y = time * 0.00045 + pointer.x
         sculpture.rotation.x += (pointer.y - sculpture.rotation.x) * 0.05
@@ -195,6 +241,7 @@ export function CrystalStage({
     })
 
     return () => {
+      disposed = true
       renderer.setAnimationLoop(null)
       observer.disconnect()
       host.removeEventListener('pointermove', onPointerMove)
@@ -211,7 +258,7 @@ export function CrystalStage({
       renderer.dispose()
       renderer.domElement.remove()
     }
-  }, [colors, shape])
+  }, [colors, environmentUrl, shape])
 
   return <div className={`crystal-stage ${className}`} ref={hostRef} />
 }
