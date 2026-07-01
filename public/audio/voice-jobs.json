@@ -1,0 +1,2599 @@
+{
+  "generatedFor": "研姐的水晶矿山",
+  "voices": {
+    "mandarin": "zh-CN-XiaoxiaoNeural",
+    "americanEnglish": "en-US-AnaNeural"
+  },
+  "jobs": [
+    {
+      "path": "questions/cn-vowels-1-zh.mp3",
+      "text": "小嘴张大，读“啊”，是哪一个韵母？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-vowels-2-zh.mp3",
+      "text": "圆圆嘴巴读“喔”，是哪一个韵母？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-vowels-3-zh.mp3",
+      "text": "小鱼吹泡泡“ü”，请选择。",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-tones-1-zh.mp3",
+      "text": "“妈妈”的“妈”读第几声？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-tones-2-zh.mp3",
+      "text": "“小马”的“马”读第几声？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-tones-3-zh.mp3",
+      "text": "“大骂”的“骂”读第几声？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-bpmf-1-zh.mp3",
+      "text": "“爸爸”的声母是什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-bpmf-2-zh.mp3",
+      "text": "“苹果”的“苹”声母是什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-bpmf-3-zh.mp3",
+      "text": "“妈妈”的声母是什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-dtnl-1-zh.mp3",
+      "text": "“大”的声母是什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-dtnl-2-zh.mp3",
+      "text": "“兔子”的“兔”声母是什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-dtnl-3-zh.mp3",
+      "text": "“梨”的声母是什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-gkh-1-zh.mp3",
+      "text": "“哥哥”的声母是什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-gkh-2-zh.mp3",
+      "text": "“开门”的“开”声母是什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-gkh-3-zh.mp3",
+      "text": "“花”的声母是什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-jqx-1-zh.mp3",
+      "text": "“小鸡”的“鸡”声母是什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-jqx-2-zh.mp3",
+      "text": "“气球”的“气”声母是什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-jqx-3-zh.mp3",
+      "text": "j、q、x 遇到 ü，ü 要怎么做？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-zcs-1-zh.mp3",
+      "text": "“走路”的“走”声母是什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-zcs-2-zh.mp3",
+      "text": "“草地”的“草”声母是什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-zcs-3-zh.mp3",
+      "text": "“三”的声母是什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-zhchshr-1-zh.mp3",
+      "text": "“竹子”的“竹”声母是什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-zhchshr-2-zh.mp3",
+      "text": "“吃饭”的“吃”声母是什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-zhchshr-3-zh.mp3",
+      "text": "“热”的声母是什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-aieiu-1-zh.mp3",
+      "text": "“白菜”的“白”里有哪个复韵母？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-aieiu-2-zh.mp3",
+      "text": "“黑色”的“黑”里有哪个复韵母？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-aieiu-3-zh.mp3",
+      "text": "“水”的音节 shuǐ 里有哪个复韵母？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-aoouiu-1-zh.mp3",
+      "text": "“小猫”的“猫”里有哪个韵母？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-aoouiu-2-zh.mp3",
+      "text": "“小狗”的“狗”里有哪个韵母？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-aoouiu-3-zh.mp3",
+      "text": "“六”的音节 liù 里有哪个韵母？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-ieueer-1-zh.mp3",
+      "text": "“叶子”的“叶”里有哪个韵母？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-ieueer-2-zh.mp3",
+      "text": "“月亮”的“月”里有哪个韵母？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-ieueer-3-zh.mp3",
+      "text": "“耳朵”的“耳”是什么特殊韵母？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-frontnasal-1-zh.mp3",
+      "text": "“山”的韵母是什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-frontnasal-2-zh.mp3",
+      "text": "“森林”的“林”韵母是什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-frontnasal-3-zh.mp3",
+      "text": "“云”的音节 yún 里藏着哪个韵母？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-backnasal-1-zh.mp3",
+      "text": "“太阳”的“阳”韵母是什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-backnasal-2-zh.mp3",
+      "text": "“星星”的“星”韵母是什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-backnasal-3-zh.mp3",
+      "text": "“红”的韵母是什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-whole-1-zh.mp3",
+      "text": "下面哪个是整体认读音节？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-whole-2-zh.mp3",
+      "text": "下面哪个是整体认读音节？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-whole-3-zh.mp3",
+      "text": "“云”的整体认读音节是什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-tone-mark-1-zh.mp3",
+      "text": "“hǎo”的声调帽子戴在哪个字母上？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-tone-mark-2-zh.mp3",
+      "text": "“shuǐ”的声调标在哪个字母上？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-tone-mark-3-zh.mp3",
+      "text": "“liù”的声调标在哪个字母上？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-strokes-1-zh.mp3",
+      "text": "“一”的笔画名称是什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-strokes-2-zh.mp3",
+      "text": "“丨”的笔画名称是什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-strokes-3-zh.mp3",
+      "text": "“丶”的笔画名称是什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-stroke-order-1-zh.mp3",
+      "text": "写“十”应该先写什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-stroke-order-2-zh.mp3",
+      "text": "写“八”应该先写什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-stroke-order-3-zh.mp3",
+      "text": "写“国”时通常先写什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-radicals-1-zh.mp3",
+      "text": "“河”的偏旁是什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-radicals-2-zh.mp3",
+      "text": "“树”的偏旁是什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-radicals-3-zh.mp3",
+      "text": "“妈”的偏旁是什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-pictograph-1-zh.mp3",
+      "text": "哪个字最像一轮太阳？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-pictograph-2-zh.mp3",
+      "text": "哪个字最像三座山峰？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-pictograph-3-zh.mp3",
+      "text": "哪个字像树干、树枝和树根？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-structure-1-zh.mp3",
+      "text": "“明”是什么结构？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-structure-2-zh.mp3",
+      "text": "“苗”是什么结构？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-structure-3-zh.mp3",
+      "text": "“人”是什么结构？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-form-sound-1-zh.mp3",
+      "text": "“清”为什么有三点水？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-form-sound-2-zh.mp3",
+      "text": "“晴”为什么有日字旁？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-form-sound-3-zh.mp3",
+      "text": "“请、清、情”右边都有“青”，它常提示什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-words-1-zh.mp3",
+      "text": "“春”可以组成哪个词？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-words-2-zh.mp3",
+      "text": "“学”可以组成哪个词？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-words-3-zh.mp3",
+      "text": "“快”可以组成哪个词？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-measure-words-1-zh.mp3",
+      "text": "一（  ）花",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-measure-words-2-zh.mp3",
+      "text": "一（  ）小鸟",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-measure-words-3-zh.mp3",
+      "text": "一（  ）书",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-opposites-1-zh.mp3",
+      "text": "“大”的反义词是什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-opposites-2-zh.mp3",
+      "text": "“上”的反义词是什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-opposites-3-zh.mp3",
+      "text": "“多”的反义词是什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-synonyms-1-zh.mp3",
+      "text": "“高兴”和哪个词意思相近？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-synonyms-2-zh.mp3",
+      "text": "“美丽”和哪个词意思相近？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-synonyms-3-zh.mp3",
+      "text": "“马上”和哪个词意思相近？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-classify-1-zh.mp3",
+      "text": "哪个不是水果？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-classify-2-zh.mp3",
+      "text": "哪个是表示动作的词？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-classify-3-zh.mp3",
+      "text": "哪个是表示颜色的词？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-sentence-order-1-zh.mp3",
+      "text": "哪句话顺序正确？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-sentence-order-2-zh.mp3",
+      "text": "哪句话顺序正确？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-sentence-order-3-zh.mp3",
+      "text": "哪句话顺序正确？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-sentence-frame-1-zh.mp3",
+      "text": "补完整：小鱼在（  ）。",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-sentence-frame-2-zh.mp3",
+      "text": "补完整：小朋友在操场上（  ）。",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-sentence-frame-3-zh.mp3",
+      "text": "哪句话说得最完整？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-punctuation-1-zh.mp3",
+      "text": "“你今天开心吗”后面用什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-punctuation-2-zh.mp3",
+      "text": "“春天来了”后面通常用什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-punctuation-3-zh.mp3",
+      "text": "“这里真美呀”后面用什么更合适？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-expression-1-zh.mp3",
+      "text": "“一会儿……一会儿……”适合说什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-expression-2-zh.mp3",
+      "text": "“因为……所以……”哪句正确？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-expression-3-zh.mp3",
+      "text": "“越……越……”哪句正确？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-read-info-1-zh.mp3",
+      "text": "短文：春雨沙沙，小草绿了，桃花红了。什么红了？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-read-info-2-zh.mp3",
+      "text": "短文：小熊带着蜂蜜去看奶奶。小熊带了什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-read-info-3-zh.mp3",
+      "text": "短文：早上，太阳从东方升起。太阳从哪里升起？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-read-reason-1-zh.mp3",
+      "text": "小鸟飞回家，因为鸟宝宝在等它。小鸟为什么回家？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-read-reason-2-zh.mp3",
+      "text": "先洗手，再吃饭。应该先做什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-read-reason-3-zh.mp3",
+      "text": "乌云来了，所以小蚂蚁搬家。蚂蚁搬家可能因为什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-poem-1-zh.mp3",
+      "text": "“床前明月光”写的是什么光？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-poem-2-zh.mp3",
+      "text": "“锄禾日当午”中，农民在做什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-poem-3-zh.mp3",
+      "text": "“春眠不觉晓”写的是哪个季节？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-polite-1-zh.mp3",
+      "text": "同学摔倒了，怎么说最合适？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-polite-2-zh.mp3",
+      "text": "向别人借铅笔，怎么说？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-polite-3-zh.mp3",
+      "text": "别人帮助了你，应该说什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-picture-talk-1-zh.mp3",
+      "text": "图中小朋友正在给花浇水。哪句最清楚？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-picture-talk-2-zh.mp3",
+      "text": "描述下雨天，哪句最完整？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-picture-talk-3-zh.mp3",
+      "text": "讲故事时，顺序怎么安排更清楚？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-phonetic-word-1-zh.mp3",
+      "text": "“河、湖、海”都有什么相同偏旁？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-phonetic-word-2-zh.mp3",
+      "text": "“桃、树、林”都有什么相同偏旁？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-phonetic-word-3-zh.mp3",
+      "text": "猜一猜：“蝴蝶”的虫字旁提示什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-similar-forms-1-zh.mp3",
+      "text": "太阳从地平线上出来，应该用哪个字？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-similar-forms-2-zh.mp3",
+      "text": "用眼睛看东西，应该选哪个字？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-similar-forms-3-zh.mp3",
+      "text": "“人”和“入”怎样区分？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-lower-literacy-1-zh.mp3",
+      "text": "春天来了，冰雪会怎样？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-lower-literacy-2-zh.mp3",
+      "text": "夏天池塘里常见什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-lower-literacy-3-zh.mp3",
+      "text": "“保护”最适合和哪个词搭配？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-dictation-1-zh.mp3",
+      "text": "“禾苗”的“禾”是哪一个？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-dictation-2-zh.mp3",
+      "text": "“河水”的“河”是哪一个？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-dictation-3-zh.mp3",
+      "text": "“我和你”的“和”是哪一个？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-final-1-zh.mp3",
+      "text": "“晴、清、请”读音相近，怎样判断用哪个？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-final-2-zh.mp3",
+      "text": "读完短文后，怎样更容易找到答案？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/cn-final-3-zh.mp3",
+      "text": "把事情讲清楚，最重要的是什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-zero-1-zh.mp3",
+      "text": "盘子里一个苹果也没有，用哪个数表示？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-zero-2-zh.mp3",
+      "text": "树上原来有 2 只鸟，全飞走了，还剩几只？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-zero-3-zh.mp3",
+      "text": "0 和 1，哪个数更小？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-count5-1-zh.mp3",
+      "text": "一共有几颗草莓？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-count5-2-zh.mp3",
+      "text": "数字 5 可以表示哪一组？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-count5-3-zh.mp3",
+      "text": "3 后面的数是什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-compare5-1-zh.mp3",
+      "text": "4 和 2，哪个数更大？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-compare5-2-zh.mp3",
+      "text": "3（  ）5，括号里放什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-compare5-3-zh.mp3",
+      "text": "2 和 2 中间放什么符号？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-ordinal-1-zh.mp3",
+      "text": "从左数，小兔排第 2。请选择它。",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-ordinal-2-zh.mp3",
+      "text": "队伍有 5 人，第 5 人在哪里？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-ordinal-3-zh.mp3",
+      "text": "第 3 和 3 个意思一样吗？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-compose5-1-zh.mp3",
+      "text": "2 和几合起来是 5？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-compose5-2-zh.mp3",
+      "text": "5 可以分成 1 和几？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-compose5-3-zh.mp3",
+      "text": "哪两个数能合成 5？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-add5-1-zh.mp3",
+      "text": "2 + 3 = ?",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-add5-2-zh.mp3",
+      "text": "1 只鸟又飞来 2 只，一共有几只？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-add5-3-zh.mp3",
+      "text": "哪道算式等于 4？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-sub5-1-zh.mp3",
+      "text": "5 - 2 = ?",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-sub5-2-zh.mp3",
+      "text": "4 块饼干吃掉 1 块，还剩几块？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-sub5-3-zh.mp3",
+      "text": "哪道算式等于 2？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-count10-1-zh.mp3",
+      "text": "6 后面的数是什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-count10-2-zh.mp3",
+      "text": "一双手共有几根手指？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-count10-3-zh.mp3",
+      "text": "哪组表示数字 8？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-compose10-1-zh.mp3",
+      "text": "6 和几合起来是 10？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-compose10-2-zh.mp3",
+      "text": "10 可以分成 7 和几？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-compose10-3-zh.mp3",
+      "text": "哪一对是“好朋友数”，能凑成 10？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-add10-1-zh.mp3",
+      "text": "4 + 5 = ?",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-add10-2-zh.mp3",
+      "text": "盒里有 3 支笔，又放进 4 支，一共有几支？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-add10-3-zh.mp3",
+      "text": "哪道算式等于 10？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-sub10-1-zh.mp3",
+      "text": "9 - 4 = ?",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-sub10-2-zh.mp3",
+      "text": "有 8 个气球，飞走 3 个，还剩几个？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-sub10-3-zh.mp3",
+      "text": "哪道算式等于 6？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-count20-1-zh.mp3",
+      "text": "1 个十和 4 个一组成多少？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-count20-2-zh.mp3",
+      "text": "18 里面有几个十和几个一？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-count20-3-zh.mp3",
+      "text": "19 后面的数是什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-place20-1-zh.mp3",
+      "text": "15 的“1”在什么位？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-place20-2-zh.mp3",
+      "text": "17 的“7”表示什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-place20-3-zh.mp3",
+      "text": "2 个十组成哪个数？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-nocarry20-1-zh.mp3",
+      "text": "10 + 6 = ?",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-nocarry20-2-zh.mp3",
+      "text": "17 - 7 = ?",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-nocarry20-3-zh.mp3",
+      "text": "14 - 10 = ?",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-carry20-1-zh.mp3",
+      "text": "8 + 7 = ?",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-carry20-2-zh.mp3",
+      "text": "9 + 6 = ?",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-carry20-3-zh.mp3",
+      "text": "7 + 5 = ?",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-solid-1-zh.mp3",
+      "text": "哪个物体最容易向各方向滚动？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-solid-2-zh.mp3",
+      "text": "魔方最像什么立体图形？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-solid-3-zh.mp3",
+      "text": "易拉罐最像什么立体图形？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-position-1-zh.mp3",
+      "text": "小猫在桌子的什么位置？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-position-2-zh.mp3",
+      "text": "你的右手是哪一边？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-position-3-zh.mp3",
+      "text": "排队时，面对前方，你身后的位置叫什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-clock-1-zh.mp3",
+      "text": "分针指 12，时针指 7，是几时？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-clock-2-zh.mp3",
+      "text": "早上 8 时通常在做什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-clock-3-zh.mp3",
+      "text": "时针走一大格，大约经过多久？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-classify-1-zh.mp3",
+      "text": "哪个不应该放进水果篮？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-classify-2-zh.mp3",
+      "text": "整理玩具时，可以按什么分类？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-classify-3-zh.mp3",
+      "text": "把红积木和蓝积木分开，是按什么分类？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-minus20-1-zh.mp3",
+      "text": "13 - 6 = ?",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-minus20-2-zh.mp3",
+      "text": "15 - 8 = ?",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-minus20-3-zh.mp3",
+      "text": "12 - 9 = ?",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-count100-1-zh.mp3",
+      "text": "29 后面的数是什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-count100-2-zh.mp3",
+      "text": "10 个十是多少？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-count100-3-zh.mp3",
+      "text": "70 里面有几个十？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-place100-1-zh.mp3",
+      "text": "46 里面有几个十和几个一？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-place100-2-zh.mp3",
+      "text": "8 个十和 3 个一组成多少？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-place100-3-zh.mp3",
+      "text": "100 的“1”在什么位？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-compare100-1-zh.mp3",
+      "text": "48 和 52，哪个更大？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-compare100-2-zh.mp3",
+      "text": "67（  ）65",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-compare100-3-zh.mp3",
+      "text": "99 和 100，哪个更小？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-sequence100-1-zh.mp3",
+      "text": "20、30、40、（  ）",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-sequence100-2-zh.mp3",
+      "text": "56、57、（  ）、59",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-sequence100-3-zh.mp3",
+      "text": "一盒彩珠大约有 98 颗，最接近哪个整十数？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-money-1-zh.mp3",
+      "text": "1 元等于多少角？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-money-2-zh.mp3",
+      "text": "1 角等于多少分？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-money-3-zh.mp3",
+      "text": "两个 5 角合起来是多少？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-money-calc-1-zh.mp3",
+      "text": "一支笔 3 元，付 5 元，找回多少？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-money-calc-2-zh.mp3",
+      "text": "苹果 4 元，牛奶 5 元，一共多少？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-money-calc-3-zh.mp3",
+      "text": "8 元可以买哪件不超预算的物品？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-add100-1-zh.mp3",
+      "text": "30 + 20 = ?",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-add100-2-zh.mp3",
+      "text": "42 + 5 = ?",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-add100-3-zh.mp3",
+      "text": "23 + 14 = ?",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-sub100-1-zh.mp3",
+      "text": "70 - 30 = ?",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-sub100-2-zh.mp3",
+      "text": "48 - 6 = ?",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-sub100-3-zh.mp3",
+      "text": "65 - 23 = ?",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-carry100-1-zh.mp3",
+      "text": "28 + 5 = ?",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-carry100-2-zh.mp3",
+      "text": "46 + 7 = ?",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-carry100-3-zh.mp3",
+      "text": "39 + 4 = ?",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-borrow100-1-zh.mp3",
+      "text": "32 - 5 = ?",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-borrow100-2-zh.mp3",
+      "text": "51 - 8 = ?",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-borrow100-3-zh.mp3",
+      "text": "40 - 6 = ?",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-story-add-1-zh.mp3",
+      "text": "左边 12 朵花，右边 7 朵，一共多少朵？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-story-add-2-zh.mp3",
+      "text": "车上有 20 人，又上来 6 人，现在有多少人？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-story-add-3-zh.mp3",
+      "text": "研姐有 8 颗钻石，又得到 5 颗，一共有多少？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-story-sub-1-zh.mp3",
+      "text": "有 16 个蛋糕，吃掉 7 个，还剩多少？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-story-sub-2-zh.mp3",
+      "text": "红花 15 朵，黄花 9 朵，红花比黄花多几朵？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-story-sub-3-zh.mp3",
+      "text": "书架有 30 本书，借走 8 本，还剩多少？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-pattern-1-zh.mp3",
+      "text": "2、4、6、（  ）",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-pattern-2-zh.mp3",
+      "text": "10、9、8、（  ）",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-pattern-3-zh.mp3",
+      "text": "5、10、15、（  ）",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-visual-pattern-1-zh.mp3",
+      "text": "🔴🟡🔴🟡，下一个是什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-visual-pattern-2-zh.mp3",
+      "text": "▲●●▲●●，下一个是什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-visual-pattern-3-zh.mp3",
+      "text": "大小大小，接下来是什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-data-1-zh.mp3",
+      "text": "记录：晴☀️☀️☀️，雨🌧️🌧️，哪种天气多？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-data-2-zh.mp3",
+      "text": "投票：苹果 4 票，香蕉 6 票，谁更受欢迎？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-data-3-zh.mp3",
+      "text": "统计前为什么要确定同一个标准？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-length-1-zh.mp3",
+      "text": "测量铅笔长度，适合用什么单位？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-length-2-zh.mp3",
+      "text": "测量教室长度，适合用什么单位？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-length-3-zh.mp3",
+      "text": "1 米等于多少厘米？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-flat-shape-1-zh.mp3",
+      "text": "哪个图形没有角？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-flat-shape-2-zh.mp3",
+      "text": "三角形有几个角？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-flat-shape-3-zh.mp3",
+      "text": "正方形的四条边有什么特点？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-mixed-1-zh.mp3",
+      "text": "买 6 元和 8 元的物品，一共多少元？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-mixed-2-zh.mp3",
+      "text": "现在 9 时，再过 1 小时是几时？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-mixed-3-zh.mp3",
+      "text": "一条丝带长 20 厘米，剪掉 5 厘米，还剩多少？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-review-number-1-zh.mp3",
+      "text": "58 的十位是几？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-review-number-2-zh.mp3",
+      "text": "27 + 6 = ?",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-review-number-3-zh.mp3",
+      "text": "50 - 8 = ?",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-final-1-zh.mp3",
+      "text": "研姐有 35 元，买 8 元的彩笔，还剩多少？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-final-2-zh.mp3",
+      "text": "一列数字每次加 5：25、30、35、（  ）",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/math-final-3-zh.mp3",
+      "text": "红宝石 12 颗，蓝宝石比它少 4 颗，蓝宝石有几颗？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-hello-1-en.mp3",
+      "text": "Hello! Choose Hello.",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-hello-1-zh.mp3",
+      "text": "见到新朋友，请选择“你好”。",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-hello-2-en.mp3",
+      "text": "What is your name?",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-hello-2-zh.mp3",
+      "text": "别人正在问“你叫什么名字”。",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-hello-3-en.mp3",
+      "text": "Goodbye!",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-hello-3-zh.mp3",
+      "text": "分别时说“再见”。",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-letters-1-en.mp3",
+      "text": "Which letter comes after A?",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-letters-1-zh.mp3",
+      "text": "A 后面的字母是什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-letters-2-en.mp3",
+      "text": "Choose the capital letter M.",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-letters-2-zh.mp3",
+      "text": "请选择大写字母 M。",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-letters-3-en.mp3",
+      "text": "Match capital A with small a.",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-letters-3-zh.mp3",
+      "text": "把大写 A 和小写 a 配对。",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-numbers-1-en.mp3",
+      "text": "How many stars?",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-numbers-1-zh.mp3",
+      "text": "这里有几颗星星？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-numbers-2-en.mp3",
+      "text": "Choose five.",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-numbers-2-zh.mp3",
+      "text": "请选择英文数字“五”。",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-numbers-3-en.mp3",
+      "text": "What comes after seven?",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-numbers-3-zh.mp3",
+      "text": "七后面的英文数字是什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-colors-1-en.mp3",
+      "text": "What color is the apple?",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-colors-1-zh.mp3",
+      "text": "苹果是什么颜色？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-colors-2-en.mp3",
+      "text": "Choose blue.",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-colors-2-zh.mp3",
+      "text": "请选择“蓝色”。",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-colors-3-en.mp3",
+      "text": "The grass is green.",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-colors-3-zh.mp3",
+      "text": "小草是绿色的。",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-classroom-1-en.mp3",
+      "text": "You can read it. What is it?",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-classroom-1-zh.mp3",
+      "text": "它可以用来阅读，是什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-classroom-2-en.mp3",
+      "text": "Choose pencil.",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-classroom-2-zh.mp3",
+      "text": "请选择“铅笔”。",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-classroom-3-en.mp3",
+      "text": "Put the book in the bag.",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-classroom-3-zh.mp3",
+      "text": "把书放进书包里。",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-family-1-en.mp3",
+      "text": "Who is she?",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-family-1-zh.mp3",
+      "text": "她是谁？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-family-2-en.mp3",
+      "text": "Choose father.",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-family-2-zh.mp3",
+      "text": "请选择“爸爸”。",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-family-3-en.mp3",
+      "text": "This is my sister.",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-family-3-zh.mp3",
+      "text": "这是我的姐妹。",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-body-1-en.mp3",
+      "text": "We see with our eyes.",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-body-1-zh.mp3",
+      "text": "我们用什么看东西？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-body-2-en.mp3",
+      "text": "Choose hand.",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-body-2-zh.mp3",
+      "text": "请选择“手”。",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-body-3-en.mp3",
+      "text": "Touch your nose.",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-body-3-zh.mp3",
+      "text": "摸摸你的鼻子。",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-animals-1-en.mp3",
+      "text": "It says meow. What is it?",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-animals-1-zh.mp3",
+      "text": "它会喵喵叫，是什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-animals-2-en.mp3",
+      "text": "Which animal can fly?",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-animals-2-zh.mp3",
+      "text": "哪种动物会飞？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-animals-3-en.mp3",
+      "text": "A fish can swim.",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-animals-3-zh.mp3",
+      "text": "鱼会做什么？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-food-1-en.mp3",
+      "text": "Choose milk.",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-food-1-zh.mp3",
+      "text": "请选择“牛奶”。",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-food-2-en.mp3",
+      "text": "It is sweet and has candles.",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-food-2-zh.mp3",
+      "text": "它甜甜的，上面有蜡烛。",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-food-3-en.mp3",
+      "text": "I am thirsty. I want some water.",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-food-3-zh.mp3",
+      "text": "我口渴了，想喝水。",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-clothes-1-en.mp3",
+      "text": "You wear it on your head.",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-clothes-1-zh.mp3",
+      "text": "它戴在头上。",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-clothes-2-en.mp3",
+      "text": "Choose dress.",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-clothes-2-zh.mp3",
+      "text": "请选择“连衣裙”。",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-clothes-3-en.mp3",
+      "text": "Put on your shoes.",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-clothes-3-zh.mp3",
+      "text": "穿上你的鞋。",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-toys-1-en.mp3",
+      "text": "It is round. You can kick it.",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-toys-1-zh.mp3",
+      "text": "它圆圆的，可以踢。",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-toys-2-en.mp3",
+      "text": "Which toy can fly in the sky?",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-toys-2-zh.mp3",
+      "text": "哪种玩具可以飞上天空？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-toys-3-en.mp3",
+      "text": "I have a toy car.",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-toys-3-zh.mp3",
+      "text": "我有一辆玩具汽车。",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-home-1-en.mp3",
+      "text": "You sleep in it.",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-home-1-zh.mp3",
+      "text": "你在它上面睡觉。",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-home-2-en.mp3",
+      "text": "You sit on a chair.",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-home-2-zh.mp3",
+      "text": "你坐在椅子上。",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-home-3-en.mp3",
+      "text": "Open the door.",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-home-3-zh.mp3",
+      "text": "打开门。",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-weather-1-en.mp3",
+      "text": "It is sunny.",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-weather-1-zh.mp3",
+      "text": "天气晴朗。",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-weather-2-en.mp3",
+      "text": "It is rainy. Take an umbrella.",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-weather-2-zh.mp3",
+      "text": "下雨了，请带雨伞。",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-weather-3-en.mp3",
+      "text": "It is snowy.",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-weather-3-zh.mp3",
+      "text": "正在下雪。",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-transport-1-en.mp3",
+      "text": "It takes us to school.",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-transport-1-zh.mp3",
+      "text": "它可以带我们去学校。",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-transport-2-en.mp3",
+      "text": "Which one runs on rails?",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-transport-2-zh.mp3",
+      "text": "哪一种在轨道上行驶？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-transport-3-en.mp3",
+      "text": "A plane can fly.",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-transport-3-zh.mp3",
+      "text": "飞机会飞。",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-actions-1-en.mp3",
+      "text": "Choose jump.",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-actions-1-zh.mp3",
+      "text": "请选择“跳”。",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-actions-2-en.mp3",
+      "text": "I can run.",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-actions-2-zh.mp3",
+      "text": "我会跑。",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-actions-3-en.mp3",
+      "text": "Open the book and read.",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-actions-3-zh.mp3",
+      "text": "打开书并阅读。",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-feelings-1-en.mp3",
+      "text": "You are happy.",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-feelings-1-zh.mp3",
+      "text": "你很开心。",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-feelings-2-en.mp3",
+      "text": "Choose sad.",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-feelings-2-zh.mp3",
+      "text": "请选择“伤心的”。",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-feelings-3-en.mp3",
+      "text": "I am tired.",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-feelings-3-zh.mp3",
+      "text": "我累了。",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-prepositions-1-en.mp3",
+      "text": "The cat is under the table.",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-prepositions-1-zh.mp3",
+      "text": "小猫在桌子下面。",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-prepositions-2-en.mp3",
+      "text": "The book is on the desk.",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-prepositions-2-zh.mp3",
+      "text": "书在桌子上。",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-prepositions-3-en.mp3",
+      "text": "The ball is in the box.",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-prepositions-3-zh.mp3",
+      "text": "球在盒子里面。",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-can-like-1-en.mp3",
+      "text": "I can swim.",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-can-like-1-zh.mp3",
+      "text": "我会游泳。",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-can-like-2-en.mp3",
+      "text": "I like apples.",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-can-like-2-zh.mp3",
+      "text": "我喜欢苹果。",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-can-like-3-en.mp3",
+      "text": "Can a bird fly?",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-can-like-3-zh.mp3",
+      "text": "鸟会飞吗？",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-reading-1-en.mp3",
+      "text": "This is a red apple.",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-reading-1-zh.mp3",
+      "text": "这是一个红苹果。",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-reading-2-en.mp3",
+      "text": "The dog is under the chair.",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-reading-2-zh.mp3",
+      "text": "小狗在椅子下面。",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-reading-3-en.mp3",
+      "text": "Amy has two books.",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-reading-3-zh.mp3",
+      "text": "艾米有两本书。",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-final-1-en.mp3",
+      "text": "I am hungry.",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-final-1-zh.mp3",
+      "text": "我饿了。",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-final-2-en.mp3",
+      "text": "Put the blue ball in the box.",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-final-2-zh.mp3",
+      "text": "把蓝色的球放进盒子。",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-final-3-en.mp3",
+      "text": "I can jump.",
+      "voice": "en-US-AnaNeural",
+      "rate": "-8%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "questions/en-final-3-zh.mp3",
+      "text": "我会跳。",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-6%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "ui/correct-zh.mp3",
+      "text": "答对了，太棒了！",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-5%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "ui/try-again-zh.mp3",
+      "text": "再想一想，看看发光的提示。",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-5%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "ui/level-clear-zh.mp3",
+      "text": "九颗知识宝石全部找到，新的矿层打开啦！",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-5%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "ui/gem-reward-zh.mp3",
+      "text": "研姐完成了五关挑战，得到一颗晶莹的彩色钻石！",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-5%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "ui/forge-ready-zh.mp3",
+      "text": "五色钻石已经集齐，选择喜欢的造型，亲手敲打锻造吧。",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-5%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "ui/forge-locked-zh.mp3",
+      "text": "每通过五关会得到一颗彩色钻石，集齐五种颜色就能开启锻造。",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-5%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "ui/forge-complete-zh.mp3",
+      "text": "锻造完成！这是研姐亲手制作的水晶作品。",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-5%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "ui/treasure-star-sticker-zh.mp3",
+      "text": "宝箱里是一张星光贴纸，已经放进收藏册。",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-5%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "ui/treasure-forge-spark-zh.mp3",
+      "text": "宝箱里是一枚锻造星火，以后敲打钻石更有力量。",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-5%",
+      "pitch": "+2Hz"
+    },
+    {
+      "path": "ui/treasure-time-crystal-zh.mp3",
+      "text": "宝箱里是一颗时间水晶，本关增加三十秒。",
+      "voice": "zh-CN-XiaoxiaoNeural",
+      "rate": "-5%",
+      "pitch": "+2Hz"
+    }
+  ]
+}

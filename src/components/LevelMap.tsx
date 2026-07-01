@@ -1,12 +1,6 @@
 import { ArrowLeft, Check, Gem, Hammer, LockKeyhole } from 'lucide-react'
-import { levels, type SubjectId } from '../curriculum'
+import { levels } from '../curriculum'
 import type { MinerProgress } from '../storage'
-
-const subjectName: Record<SubjectId, string> = {
-  chinese: '语',
-  math: '数',
-  english: 'EN',
-}
 
 export function LevelMap({
   progress,
@@ -37,6 +31,8 @@ export function LevelMap({
       </header>
       <div className="map-summary">
         <span>已通关 <b>{progress.completedLevels.length}</b>/100</span>
+        <span>宝箱 <b>{progress.openedChests.length}</b>/100</span>
+        <span>贴纸 <b>{progress.starStickers}</b> 张</span>
         <span>已锻造 <b>{progress.forgedCreations.length}</b> 件</span>
       </div>
       <div className="level-path">
@@ -59,12 +55,14 @@ export function LevelMap({
                       disabled={!unlocked}
                       className={`${completed ? 'completed' : ''} ${
                         level.id === progress.currentLevel ? 'current' : ''
-                      } subject-${level.subject}`}
+                      } subject-mixed`}
                       key={level.id}
                       aria-label={`第 ${level.id} 关 ${level.title}${unlocked ? '' : ' 未解锁'}`}
                       onClick={() => onSelect(level.id)}
                     >
-                      <small>{subjectName[level.subject]}</small>
+                      <small className="mixed-subjects">
+                        <i>语</i><i>数</i><i>EN</i>
+                      </small>
                       <strong>{level.id}</strong>
                       {completed ? (
                         <Check size={14} />

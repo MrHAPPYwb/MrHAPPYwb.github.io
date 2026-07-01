@@ -34,7 +34,7 @@ export default defineConfig({
         ],
       },
       workbox: {
-        globPatterns: ['**/*.{js,css,html,svg,png,webp,json}'],
+        globPatterns: ['**/*.{js,css,html,svg,png,webp,json,mp3}'],
         importScripts: ['sw-refresh.js'],
         cleanupOutdatedCaches: true,
         clientsClaim: true,

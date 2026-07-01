@@ -7,6 +7,8 @@ export type SkillRecord = {
   lastSeenLevel: number
 }
 
+export type TreasureReward = 'star-sticker' | 'forge-spark' | 'time-crystal'
+
 export type MinerProgress = {
   id: string
   playerName: string
@@ -17,6 +19,9 @@ export type MinerProgress = {
   questionRecords: Record<string, SkillRecord>
   totalCorrect: number
   bestCombo: number
+  openedChests: number[]
+  starStickers: number
+  forgeSparks: number
 }
 
 class CrystalMineDB extends Dexie {
@@ -47,6 +52,9 @@ export function createBlankProgress(): MinerProgress {
     questionRecords: {},
     totalCorrect: 0,
     bestCombo: 0,
+    openedChests: [],
+    starStickers: 0,
+    forgeSparks: 0,
   }
 }
 
@@ -61,6 +69,9 @@ function normalize(progress: MinerProgress): MinerProgress {
       : [],
     forgedCreations: Array.isArray(progress.forgedCreations)
       ? progress.forgedCreations
+      : [],
+    openedChests: Array.isArray(progress.openedChests)
+      ? progress.openedChests
       : [],
     inventory: { ...blank.inventory, ...progress.inventory },
     questionRecords: progress.questionRecords ?? {},
@@ -132,6 +143,26 @@ export async function completeLevel(
             [rewardColor]: progress.inventory[rewardColor] + 1,
           }
         : progress.inventory,
+  }
+  await saveProgress(next)
+  return next
+}
+
+export async function openTreasure(
+  progress: MinerProgress,
+  levelId: number,
+  reward: TreasureReward,
+) {
+  if (progress.openedChests.includes(levelId)) {
+    return progress
+  }
+  const next: MinerProgress = {
+    ...progress,
+    openedChests: [...progress.openedChests, levelId].sort((a, b) => a - b),
+    starStickers:
+      progress.starStickers + (reward === 'star-sticker' ? 1 : 0),
+    forgeSparks:
+      progress.forgeSparks + (reward === 'forge-spark' ? 1 : 0),
   }
   await saveProgress(next)
   return next

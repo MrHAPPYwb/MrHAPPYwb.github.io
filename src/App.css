@@ -65,28 +65,28 @@ button:focus-visible {
 
 .miner-hud {
   position: absolute;
-  top: calc(9px + env(safe-area-inset-top));
-  left: 10px;
-  right: 10px;
+  top: calc(6px + env(safe-area-inset-top));
+  left: 8px;
+  right: 8px;
   z-index: 12;
   display: grid;
-  grid-template-columns: 64px minmax(0, 1fr) 56px;
-  gap: 7px;
+  grid-template-columns: 56px minmax(0, 1fr) 50px;
+  gap: 5px;
   pointer-events: none;
 }
 
 .level-pill,
 .target-pill,
 .time-pill {
-  min-height: 54px;
+  min-height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
   border: 1px solid rgba(255, 255, 255, 0.68);
   border-radius: 8px;
-  background: rgba(27, 16, 46, 0.82);
-  box-shadow: 0 8px 20px rgba(17, 7, 28, 0.32);
-  backdrop-filter: blur(9px);
+  background: rgba(27, 16, 46, 0.64);
+  box-shadow: 0 5px 12px rgba(17, 7, 28, 0.22);
+  backdrop-filter: blur(6px);
 }
 
 .level-pill {
@@ -106,8 +106,8 @@ button:focus-visible {
 }
 
 .target-pill {
-  gap: 8px;
-  padding: 6px 9px;
+  gap: 6px;
+  padding: 4px 7px;
 }
 
 .target-pill > svg {
@@ -125,7 +125,7 @@ button:focus-visible {
 .target-pill small {
   overflow: hidden;
   color: #e8dcff;
-  font-size: 9px;
+  font-size: 8px;
   font-weight: 800;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -133,7 +133,7 @@ button:focus-visible {
 
 .target-pill strong {
   color: #fff;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .time-pill {
@@ -146,44 +146,22 @@ button:focus-visible {
   font-size: 16px;
 }
 
-.miner-status {
+.mine-score {
   position: absolute;
-  top: calc(72px + env(safe-area-inset-top));
-  left: 50%;
+  top: calc(56px + env(safe-area-inset-top));
+  right: 11px;
   z-index: 11;
-  width: max-content;
-  max-width: 86%;
-  display: inline-flex;
-  gap: 9px;
-  align-items: center;
-  padding: 6px 10px;
-  transform: translateX(-50%);
-  border: 1px solid rgba(255, 255, 255, 0.52);
-  border-radius: 999px;
-  background: rgba(28, 17, 48, 0.74);
-  box-shadow: 0 6px 16px rgba(17, 7, 28, 0.3);
-  backdrop-filter: blur(8px);
-  pointer-events: none;
-}
-
-.miner-status span {
-  overflow: hidden;
-  font-size: 11px;
-  font-weight: 900;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.miner-status b {
-  flex: 0 0 auto;
   color: #ffe36f;
   font-size: 10px;
+  font-weight: 900;
+  text-shadow: 0 2px 5px #231037, 0 0 8px #231037;
+  pointer-events: none;
 }
 
 .tap-ripple {
   position: absolute;
   left: 50%;
-  bottom: 102px;
+  bottom: 76px;
   z-index: 8;
   width: 46px;
   height: 46px;
@@ -203,20 +181,18 @@ button:focus-visible {
 
 .game-dock {
   position: absolute;
-  left: 10px;
-  right: 10px;
-  bottom: calc(10px + env(safe-area-inset-bottom));
+  left: 12px;
+  right: 12px;
+  bottom: calc(5px + env(safe-area-inset-bottom));
   z-index: 14;
-  min-height: 70px;
+  min-height: 50px;
   display: grid;
-  grid-template-columns: 76px 1fr 76px;
-  gap: 7px;
-  padding: 6px;
-  border: 1px solid rgba(255, 255, 255, 0.65);
-  border-radius: 8px;
-  background: rgba(27, 16, 46, 0.88);
-  box-shadow: 0 10px 30px rgba(14, 5, 27, 0.42);
-  backdrop-filter: blur(11px);
+  grid-template-columns: 58px 1fr 58px;
+  gap: 8px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .game-dock button {
@@ -224,7 +200,9 @@ button:focus-visible {
   place-content: center;
   gap: 2px;
   color: #43260f;
-  background: #ffe07a;
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  background: rgba(255, 224, 122, 0.92);
+  box-shadow: 0 5px 14px rgba(23, 10, 37, 0.36);
 }
 
 .game-dock button span {
@@ -237,6 +215,7 @@ button:focus-visible {
   display: grid;
   place-content: center;
   text-align: center;
+  text-shadow: 0 2px 6px #1b0d2d, 0 0 9px #1b0d2d;
 }
 
 .dock-player strong {
@@ -255,7 +234,7 @@ button:focus-visible {
 .settings-trigger {
   position: absolute;
   right: 14px;
-  bottom: calc(91px + env(safe-area-inset-bottom));
+  bottom: calc(61px + env(safe-area-inset-bottom));
   z-index: 13;
   min-height: 30px;
   padding: 0 8px;
@@ -273,28 +252,34 @@ button:focus-visible {
   z-index: 40;
   display: grid;
   place-items: center;
-  padding: 18px;
-  background: rgba(17, 7, 33, 0.62);
-  backdrop-filter: blur(7px);
+  padding: calc(16px + env(safe-area-inset-top)) 16px
+    calc(16px + env(safe-area-inset-bottom));
+  background:
+    linear-gradient(180deg, rgba(23, 10, 39, 0.36), rgba(16, 8, 29, 0.68)),
+    url('/assets/crystal-mine-v1.webp') center / cover no-repeat;
   animation: fade-in 240ms ease both;
 }
 
 .quiz-crystal {
   position: relative;
-  width: min(100%, 390px);
-  min-height: 520px;
+  width: min(100%, 400px);
+  min-height: min(590px, calc(100svh - 34px));
+  max-height: calc(100svh - 34px);
   display: grid;
   align-content: center;
   gap: 12px;
-  padding: 24px 18px;
+  padding: 22px 18px 18px;
   overflow: hidden;
-  clip-path: polygon(50% 0, 94% 16%, 100% 72%, 78% 100%, 22% 100%, 0 72%, 6% 16%);
+  border: 2px solid rgba(255, 238, 190, 0.78);
+  border-radius: 8px;
+  isolation: isolate;
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.72), transparent 28%),
-    linear-gradient(155deg, rgba(71, 225, 214, 0.95), rgba(38, 87, 159, 0.96) 56%, rgba(126, 62, 184, 0.96));
+    linear-gradient(145deg, rgba(255, 255, 255, 0.18), transparent 30%),
+    linear-gradient(180deg, rgba(62, 33, 91, 0.78), rgba(18, 43, 63, 0.9)),
+    url('/assets/crystal-mine-v1.webp') center 55% / cover no-repeat;
   box-shadow:
-    0 0 0 5px rgba(255, 255, 255, 0.28),
-    0 0 60px rgba(93, 224, 255, 0.72);
+    0 0 0 4px rgba(255, 255, 255, 0.16),
+    0 0 46px rgba(93, 224, 255, 0.54);
 }
 
 .quiz-crystal::before,
@@ -302,22 +287,28 @@ button:focus-visible {
   content: '';
   position: absolute;
   inset: 0;
-  z-index: -1;
+  z-index: 0;
+  pointer-events: none;
   background:
     linear-gradient(72deg, transparent 48%, rgba(255, 255, 255, 0.25) 49%, transparent 51%),
     linear-gradient(-65deg, transparent 52%, rgba(255, 255, 255, 0.2) 53%, transparent 55%);
 }
 
 .quiz-crystal.subject-chinese {
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.7), transparent 28%),
-    linear-gradient(155deg, #ffb35b, #dd566d 58%, #973b83);
+  border-color: rgba(255, 174, 183, 0.88);
 }
 
 .quiz-crystal.subject-math {
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.72), transparent 28%),
-    linear-gradient(155deg, #ffd45b, #25b78d 54%, #167d9f);
+  border-color: rgba(118, 246, 207, 0.88);
+}
+
+.quiz-crystal.subject-english {
+  border-color: rgba(123, 211, 255, 0.9);
+}
+
+.quiz-crystal > * {
+  position: relative;
+  z-index: 1;
 }
 
 .quiz-subject {
@@ -906,6 +897,22 @@ button:focus-visible {
   background: #277bb0;
 }
 
+.chapter-track button.subject-mixed {
+  background: linear-gradient(145deg, #b44981 0 33%, #168a78 33% 66%, #267aaf 66%);
+}
+
+.mixed-subjects {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+  justify-content: center;
+}
+
+.mixed-subjects i {
+  font-size: 7px;
+  font-style: normal;
+}
+
 .chapter-track button:disabled {
   color: #9d91ab;
   background: #43394e;
@@ -940,6 +947,68 @@ button:focus-visible {
   border-radius: 50%;
   color: #593914;
   background: #fff2ad;
+}
+
+.treasure-toast {
+  position: absolute;
+  left: 50%;
+  top: calc(74px + env(safe-area-inset-top));
+  z-index: 35;
+  width: min(310px, calc(100% - 34px));
+  min-height: 72px;
+  display: grid;
+  grid-template-columns: 54px minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+  padding: 9px 13px;
+  transform: translateX(-50%);
+  border: 1px solid rgba(255, 242, 184, 0.92);
+  border-radius: 8px;
+  color: #3f2454;
+  background: rgba(255, 247, 217, 0.95);
+  box-shadow: 0 9px 24px rgba(21, 8, 35, 0.4), 0 0 22px rgba(255, 224, 117, 0.52);
+  pointer-events: none;
+  animation: treasure-arrive 1.9s ease both;
+}
+
+.treasure-toast > div {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-content: center;
+  border-radius: 50%;
+  color: #8d4d25;
+  background: #ffd76a;
+}
+
+.treasure-toast > div svg:last-child {
+  position: absolute;
+  right: -2px;
+  top: -2px;
+  color: #fff;
+  fill: #ff89c7;
+}
+
+.treasure-toast > span {
+  display: grid;
+}
+
+.treasure-toast small {
+  color: #8b668f;
+  font-size: 9px;
+  font-weight: 900;
+}
+
+.treasure-toast strong {
+  font-size: 17px;
+}
+
+.treasure-toast em {
+  color: #6b5273;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 800;
 }
 
 .forged-result,
@@ -1067,14 +1136,21 @@ button:focus-visible {
   50% { transform: scale(1.08); }
 }
 
+@keyframes treasure-arrive {
+  0% { opacity: 0; transform: translate(-50%, -22px) scale(0.82); }
+  14%, 82% { opacity: 1; transform: translate(-50%, 0) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -10px) scale(0.96); }
+}
+
 @media (max-width: 380px), (max-height: 730px) {
   .game-shell {
     min-height: 580px;
   }
 
   .quiz-crystal {
-    min-height: 470px;
-    transform: scale(0.9);
+    min-height: min(500px, calc(100svh - 24px));
+    max-height: calc(100svh - 24px);
+    padding: 14px;
   }
 
   .quiz-cue {

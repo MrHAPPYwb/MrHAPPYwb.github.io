@@ -19,7 +19,7 @@ export type Level = {
   chapter: number
   chapterName: string
   title: string
-  subject: SubjectId
+  subject: 'mixed'
   skill: string
   questions: Question[]
   target: number
@@ -27,7 +27,12 @@ export type Level = {
   rewardColor?: GemColor
 }
 
-type LevelSeed = Omit<Level, 'id' | 'chapter' | 'chapterName' | 'target' | 'timeLimit' | 'rewardColor'>
+type LevelSeed = {
+  title: string
+  subject: SubjectId
+  skill: string
+  questions: Question[]
+}
 
 const cn = (
   key: string,
@@ -665,31 +670,51 @@ if (chineseCourse.length !== 40 || mathCourse.length !== 40 || englishCourse.len
   throw new Error('Curriculum pools must contain 40 Chinese, 40 math and 20 English levels.')
 }
 
-export const levels: Level[] = Array.from({ length: 20 }, (_, chapterIndex) => {
-  const chapterSeeds = [
-    chineseCourse[chapterIndex * 2],
-    mathCourse[chapterIndex * 2],
-    englishCourse[chapterIndex],
-    chineseCourse[chapterIndex * 2 + 1],
-    mathCourse[chapterIndex * 2 + 1],
+function questionsForStage(course: LevelSeed[], levelIndex: number) {
+  const currentIndex = Math.min(
+    course.length - 1,
+    Math.floor((levelIndex * course.length) / 100),
+  )
+  const current = course[currentIndex]
+  const reviewIndex =
+    currentIndex === 0 ? 0 : (levelIndex * 7 + currentIndex) % currentIndex
+  const review = course[reviewIndex]
+  const rotation = levelIndex % 3
+
+  return [
+    current.questions[rotation],
+    current.questions[(rotation + 1) % 3],
+    review.questions[(rotation + 2) % 3],
   ]
+}
 
-  return chapterSeeds.map((seed, levelOffset) => {
-    const id = chapterIndex * 5 + levelOffset + 1
-    return {
-      ...seed,
-      id,
-      chapter: chapterIndex + 1,
-      chapterName: chapterNames[chapterIndex],
-      target: id < 11 ? 3 : id < 51 ? 4 : 5,
-      timeLimit: id < 11 ? 100 : id < 51 ? 90 : 80,
-      rewardColor:
-        levelOffset === 4 ? rewardColors[chapterIndex % rewardColors.length] : undefined,
-    }
-  })
-}).flat()
+export const levels: Level[] = Array.from({ length: 100 }, (_, levelIndex) => {
+  const id = levelIndex + 1
+  const chapterIndex = Math.floor(levelIndex / 5)
+  const chineseQuestions = questionsForStage(chineseCourse, levelIndex)
+  const mathQuestions = questionsForStage(mathCourse, levelIndex)
+  const englishQuestions = questionsForStage(englishCourse, levelIndex)
 
-export const allQuestions = levels.flatMap((level) => level.questions)
+  return {
+    id,
+    chapter: chapterIndex + 1,
+    chapterName: chapterNames[chapterIndex],
+    title: `三科晶核 · ${chapterNames[chapterIndex]}`,
+    subject: 'mixed',
+    skill: '语文 3 · 数学 3 · English 3',
+    questions: [...chineseQuestions, ...mathQuestions, ...englishQuestions],
+    target: 9,
+    timeLimit: id < 11 ? 180 : id < 51 ? 165 : 150,
+    rewardColor:
+      id % 5 === 0 ? rewardColors[chapterIndex % rewardColors.length] : undefined,
+  }
+})
+
+export const allQuestions = [
+  ...chineseCourse.flatMap((level) => level.questions),
+  ...mathCourse.flatMap((level) => level.questions),
+  ...englishCourse.flatMap((level) => level.questions),
+]
 
 export const gemMeta: Record<
   GemColor,
@@ -713,7 +738,18 @@ export function questionsForLevel(
   const reviews = weakQuestionIds
     .map((id) => allQuestions.find((question) => question.id === id))
     .filter((question): question is Question => Boolean(question))
-    .slice(0, 2)
 
-  return [...level.questions, ...reviews]
+  return (['chinese', 'math', 'english'] as SubjectId[]).flatMap((subject) => {
+    const subjectQuestions = level.questions.filter(
+      (question) => question.subject === subject,
+    )
+    const review = reviews.find(
+      (question) =>
+        question.subject === subject &&
+        !subjectQuestions.some((item) => item.id === question.id),
+    )
+    return review
+      ? [subjectQuestions[0], subjectQuestions[1], review]
+      : subjectQuestions
+  })
 }

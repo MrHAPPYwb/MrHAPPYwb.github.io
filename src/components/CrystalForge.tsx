@@ -1,6 +1,6 @@
 import { ArrowLeft, Gem, Hammer, LockKeyhole, Sparkles } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
-import { playNotes, speak } from '../audio'
+import { playNotes, speakUi } from '../audio'
 import { gemMeta, type GemColor } from '../curriculum'
 import { canForge, type MinerProgress } from '../storage'
 import { CrystalStage, type ForgeShape } from './CrystalStage'
@@ -31,11 +31,7 @@ export function CrystalForge({
 
   useEffect(() => {
     const timer = window.setTimeout(() => {
-      void speak(
-        unlocked
-          ? '研姐，五色钻石已经集齐。选择喜欢的造型，然后亲手敲打锻造吧。'
-          : '每通过五关会得到一颗彩色钻石。集齐五种颜色，就能开启锻造。',
-      )
+      void speakUi(unlocked ? 'forge-ready' : 'forge-locked')
     }, 450)
     return () => window.clearTimeout(timer)
   }, [unlocked])
@@ -44,7 +40,10 @@ export function CrystalForge({
     if (!unlocked || finishedRef.current) {
       return
     }
-    const next = Math.min(100, hammering + 8)
+    const next = Math.min(
+      100,
+      hammering + 8 + Math.min(progress.forgeSparks, 4),
+    )
     setHammering(next)
     setImpact((value) => value + 1)
     playNotes([240 + next * 2.6, 420 + next * 1.8], 0.055)
@@ -52,7 +51,7 @@ export function CrystalForge({
     if (next >= 100) {
       finishedRef.current = true
       playNotes([523, 659, 784, 1047], 0.14)
-      void speak(`${shapeMeta[shape].name}锻造完成！这是研姐亲手做出的水晶作品。`)
+      void speakUi('forge-complete')
       window.setTimeout(() => onForged(shapeMeta[shape].name), 900)
     }
   }

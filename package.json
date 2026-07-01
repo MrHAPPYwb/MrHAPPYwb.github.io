@@ -8,6 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "oxlint",
     "validate:curriculum": "tsx scripts/validate-curriculum.ts",
+    "validate:voice": "tsx scripts/validate-voice-pack.ts",
+    "voice:export": "tsx scripts/export-voice-jobs.ts",
     "preview": "vite preview"
   },
   "dependencies": {

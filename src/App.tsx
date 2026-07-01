@@ -8,7 +8,7 @@ import {
 } from 'react'
 import { Gem, Hammer, Map, RotateCcw, Sparkles } from 'lucide-react'
 import './App.css'
-import { playNotes, prepareVoices, speak } from './audio'
+import { playNotes, prepareAudio, speakUi } from './audio'
 import {
   gemMeta,
   getLevel,
@@ -22,10 +22,12 @@ import {
   createBlankProgress,
   forgeCreation,
   loadProgress,
+  openTreasure,
   recordQuestion,
   resetProgress,
   weakQuestionIds,
   type MinerProgress,
+  type TreasureReward,
 } from './storage'
 
 type Screen = 'mine' | 'map' | 'forge'
@@ -72,11 +74,7 @@ function LevelComplete({
   const reward = completion.rewardColor
 
   useEffect(() => {
-    void speak(
-      reward
-        ? `研姐完成了五关挑战，得到一颗${gemMeta[reward].name}！`
-        : `第${completion.level.id}关完成。矿道继续向下打开。`,
-    )
+    void speakUi(reward ? 'gem-reward' : 'level-clear')
   }, [completion, reward])
 
   return (
@@ -122,7 +120,7 @@ function App() {
   progressRef.current = progress
 
   useEffect(() => {
-    prepareVoices()
+    prepareAudio()
     let mounted = true
     void loadProgress().then((stored) => {
       if (!mounted) {
@@ -176,6 +174,15 @@ function App() {
     [currentLevel, selectedLevel],
   )
 
+  const handleTreasure = useCallback(
+    async (levelId: number, reward: TreasureReward) => {
+      const next = await openTreasure(progressRef.current, levelId, reward)
+      progressRef.current = next
+      setProgress(next)
+    },
+    [],
+  )
+
   async function handleForged(name: string) {
     const next = await forgeCreation(progressRef.current, name)
     progressRef.current = next
@@ -214,6 +221,9 @@ function App() {
               weakQuestionIds={weakQuestionIds(progress, currentLevel.id)}
               onAnswer={(question, correct, combo) =>
                 void handleAnswer(question, correct, combo)
+              }
+              onTreasure={(levelId, reward) =>
+                void handleTreasure(levelId, reward)
               }
               onComplete={(score) => void handleLevelComplete(score)}
             />
@@ -302,6 +312,10 @@ function App() {
           <p>
             已通关 {progress.completedLevels.length}/100 · 累计答对{' '}
             {progress.totalCorrect} 题 · 最佳连击 {progress.bestCombo}
+          </p>
+          <p>
+            宝箱收藏：星光贴纸 {progress.starStickers} 张 · 锻造星火{' '}
+            {progress.forgeSparks} 枚
           </p>
           <p>错题会在间隔两个以上关卡后重新进入钻石，直到稳定答对。</p>
           <button type="button" className="reset-progress" onClick={() => void handleReset()}>

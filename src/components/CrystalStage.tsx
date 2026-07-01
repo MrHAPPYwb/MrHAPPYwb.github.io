@@ -1,8 +1,10 @@
 import { useEffect, useRef } from 'react'
 import * as THREE from 'three'
 import {
+  addCrystalEnvironment,
   addGemLighting,
   createDiamondGeometry,
+  createGemCoreMaterial,
   createGemMaterial,
   gemHexColors,
 } from '../gem3d'
@@ -93,18 +95,27 @@ export function CrystalStage({
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
     renderer.setClearColor(0x000000, 0)
     renderer.outputColorSpace = THREE.SRGBColorSpace
+    renderer.toneMapping = THREE.ACESFilmicToneMapping
+    renderer.toneMappingExposure = 1.35
     host.appendChild(renderer.domElement)
 
     const scene = new THREE.Scene()
     const camera = new THREE.PerspectiveCamera(36, 1, 0.1, 100)
     camera.position.set(0, 0.15, 6.2)
     addGemLighting(scene)
+    const environment = addCrystalEnvironment(scene, renderer)
 
     const palette = colors.map((color) => gemHexColors[color])
     const diamondGeometry = createDiamondGeometry(1.25, 2.7, 12)
     const diamond = new THREE.Mesh(
       diamondGeometry,
       createGemMaterial(palette[0] ?? gemHexColors.ruby),
+    )
+    diamond.add(
+      new THREE.Mesh(
+        createDiamondGeometry(0.86, 1.86, 12),
+        createGemCoreMaterial(palette[0] ?? gemHexColors.ruby),
+      ),
     )
     diamond.rotation.x = 0.16
     scene.add(diamond)
@@ -167,8 +178,11 @@ export function CrystalStage({
           child.visible = value >= 34 + index * 5
           const material = (child as THREE.Mesh)
             .material as THREE.MeshPhysicalMaterial
-          material.roughness = 0.4 - reveal * 0.34
-          material.transmission = 0.22 + reveal * 0.5
+          material.roughness = 0.2 - reveal * 0.185
+          material.transmission = 0.68 + reveal * 0.32
+          material.thickness = 1.1 + reveal * 0.75
+          material.dispersion = 0.02 + reveal * 0.1
+          material.envMapIntensity = 1.8 + reveal * 1.4
         })
         sculpture.rotation.y = time * 0.00045 + pointer.x
         sculpture.rotation.x += (pointer.y - sculpture.rotation.x) * 0.05
@@ -193,6 +207,7 @@ export function CrystalStage({
           materials.forEach((material) => material.dispose())
         }
       })
+      environment.dispose()
       renderer.dispose()
       renderer.domElement.remove()
     }
