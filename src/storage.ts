@@ -1,5 +1,5 @@
 import Dexie, { type Table } from 'dexie'
-import type { GemColor } from './curriculum'
+import { levels, type GemColor } from './curriculum'
 
 export type SkillRecord = {
   correct: number
@@ -14,6 +14,7 @@ export type MinerProgress = {
   playerName: string
   currentLevel: number
   completedLevels: number[]
+  rewardedLevels: number[]
   inventory: Record<GemColor, number>
   forgedCreations: string[]
   questionRecords: Record<string, SkillRecord>
@@ -41,6 +42,7 @@ export function createBlankProgress(): MinerProgress {
     playerName: '研姐',
     currentLevel: 1,
     completedLevels: [],
+    rewardedLevels: [],
     inventory: {
       ruby: 0,
       sapphire: 0,
@@ -60,20 +62,36 @@ export function createBlankProgress(): MinerProgress {
 
 function normalize(progress: MinerProgress): MinerProgress {
   const blank = createBlankProgress()
+  const completedLevels = Array.isArray(progress.completedLevels)
+    ? progress.completedLevels
+    : []
+  const hasRewardLedger = Array.isArray(progress.rewardedLevels)
+  const inventory = { ...blank.inventory, ...progress.inventory }
+
+  if (!hasRewardLedger) {
+    const legacyRewardedLevels = new Set(
+      completedLevels.filter((levelId) => levelId % 5 === 0),
+    )
+    completedLevels.forEach((levelId) => {
+      if (legacyRewardedLevels.has(levelId)) return
+      const rewardColor = levels[levelId - 1]?.rewardColor
+      if (rewardColor) inventory[rewardColor] += 1
+    })
+  }
+
   return {
     ...blank,
     ...progress,
     playerName: '研姐',
-    completedLevels: Array.isArray(progress.completedLevels)
-      ? progress.completedLevels
-      : [],
+    completedLevels,
+    rewardedLevels: hasRewardLedger ? progress.rewardedLevels : completedLevels,
     forgedCreations: Array.isArray(progress.forgedCreations)
       ? progress.forgedCreations
       : [],
     openedChests: Array.isArray(progress.openedChests)
       ? progress.openedChests
       : [],
-    inventory: { ...blank.inventory, ...progress.inventory },
+    inventory,
     questionRecords: progress.questionRecords ?? {},
   }
 }
@@ -81,7 +99,11 @@ function normalize(progress: MinerProgress): MinerProgress {
 export async function loadProgress() {
   const stored = await db.progress.get('main')
   if (stored) {
-    return normalize(stored)
+    const normalized = normalize(stored)
+    if (!Array.isArray(stored.rewardedLevels)) {
+      await db.progress.put(normalized)
+    }
+    return normalized
   }
   const blank = createBlankProgress()
   await db.progress.put(blank)
@@ -128,16 +150,21 @@ export async function completeLevel(
   rewardColor?: GemColor,
 ) {
   const firstCompletion = !progress.completedLevels.includes(levelId)
+  const firstReward = !progress.rewardedLevels.includes(levelId)
   const completedLevels = firstCompletion
     ? [...progress.completedLevels, levelId].sort((a, b) => a - b)
     : progress.completedLevels
+  const rewardedLevels = firstReward
+    ? [...progress.rewardedLevels, levelId].sort((a, b) => a - b)
+    : progress.rewardedLevels
   const nextLevel = Math.min(100, Math.max(progress.currentLevel, levelId + 1))
   const next: MinerProgress = {
     ...progress,
     currentLevel: nextLevel,
     completedLevels,
+    rewardedLevels,
     inventory:
-      firstCompletion && rewardColor
+      firstReward && rewardColor
         ? {
             ...progress.inventory,
             [rewardColor]: progress.inventory[rewardColor] + 1,

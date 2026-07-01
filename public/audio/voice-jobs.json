@@ -2548,7 +2548,7 @@
     },
     {
       "path": "ui/gem-reward-zh.mp3",
-      "text": "研姐完成了五关挑战，得到一颗晶莹的彩色钻石！",
+      "text": "研姐通过了这一关，得到一颗晶莹的彩色钻石！",
       "voice": "zh-CN-XiaoxiaoNeural",
       "rate": "-5%",
       "pitch": "+2Hz"
@@ -2562,7 +2562,7 @@
     },
     {
       "path": "ui/forge-locked-zh.mp3",
-      "text": "每通过五关会得到一颗彩色钻石，集齐五种颜色就能开启锻造。",
+      "text": "每通过一个关卡会得到一颗彩色钻石，集齐五种颜色就能开启锻造。",
       "voice": "zh-CN-XiaoxiaoNeural",
       "rate": "-5%",
       "pitch": "+2Hz"

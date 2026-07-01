@@ -705,8 +705,7 @@ export const levels: Level[] = Array.from({ length: 100 }, (_, levelIndex) => {
     questions: [...chineseQuestions, ...mathQuestions, ...englishQuestions],
     target: 9,
     timeLimit: id < 11 ? 180 : id < 51 ? 165 : 150,
-    rewardColor:
-      id % 5 === 0 ? rewardColors[chapterIndex % rewardColors.length] : undefined,
+    rewardColor: rewardColors[id % rewardColors.length],
   }
 })
 

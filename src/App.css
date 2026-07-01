@@ -51,37 +51,36 @@ button:focus-visible {
   animation: level-pulse 1.2s ease-in-out infinite;
 }
 
-.phaser-host,
-.phaser-host canvas {
+.phaser-host {
   width: 100% !important;
   height: 100% !important;
 }
 
 .phaser-host canvas {
   display: block;
-  object-fit: contain;
   touch-action: none;
 }
 
-.miner-hud {
+.mine-info-stack {
   position: absolute;
-  top: calc(6px + env(safe-area-inset-top));
-  left: 8px;
+  top: calc(8px + env(safe-area-inset-top));
   right: 8px;
   z-index: 12;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
+  display: grid;
+  grid-template-rows: repeat(4, 48px);
+  gap: 5px;
+  width: 78px;
   pointer-events: none;
 }
 
-.level-pill,
-.target-pill,
-.time-pill {
-  min-height: 44px;
-  display: flex;
+.mine-info-box {
+  width: 78px;
+  height: 48px;
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr);
   align-items: center;
-  justify-content: center;
+  gap: 5px;
+  padding: 4px 6px;
   border: 1px solid rgba(255, 255, 255, 0.68);
   border-radius: 8px;
   background: rgba(27, 16, 46, 0.64);
@@ -89,84 +88,48 @@ button:focus-visible {
   backdrop-filter: blur(6px);
 }
 
-.level-pill {
-  width: 56px;
-  display: grid;
-  place-content: center;
-  text-align: center;
-}
-
-.level-pill small {
-  color: #8cf0df;
-  font-size: 8px;
-  font-weight: 900;
-}
-
-.level-pill strong {
-  font-size: 15px;
-}
-
-.target-pill {
-  gap: 6px;
-  padding: 4px 7px;
-}
-
-.mine-target {
-  position: absolute;
-  top: calc(56px + env(safe-area-inset-top));
-  left: 8px;
-  z-index: 12;
-  width: 112px;
-  pointer-events: none;
-}
-
-.target-pill > svg {
+.mine-info-box > svg {
   flex: 0 0 auto;
   color: #ffdf68;
   filter: drop-shadow(0 0 7px #ffdf68);
 }
 
-.target-pill span {
+.mine-info-box > span {
   min-width: 0;
-  flex: 1;
   display: grid;
+  align-content: center;
 }
 
-.target-pill small {
+.mine-info-box small {
   overflow: hidden;
   color: #e8dcff;
   font-size: 8px;
   font-weight: 800;
+  line-height: 1.15;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.target-pill strong {
+.mine-info-box strong {
   color: #fff;
-  font-size: 16px;
+  font-size: 14px;
+  line-height: 1.15;
 }
 
-.time-pill {
-  width: 50px;
-  gap: 4px;
+.time-info-box {
   color: #41280d;
   background: #ffdc73;
 }
 
-.time-pill strong {
-  font-size: 16px;
+.time-info-box > svg,
+.time-info-box small,
+.time-info-box strong {
+  color: #41280d;
+  filter: none;
 }
 
-.mine-score {
-  position: absolute;
-  top: calc(56px + env(safe-area-inset-top));
-  right: 11px;
-  z-index: 11;
+.score-info-box strong {
   color: #ffe36f;
-  font-size: 10px;
-  font-weight: 900;
-  text-shadow: 0 2px 5px #231037, 0 0 8px #231037;
-  pointer-events: none;
 }
 
 .tap-ripple {

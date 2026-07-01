@@ -166,17 +166,31 @@ export function CrystalStage({
     scene.add(diamond)
 
     const looseGems = new THREE.Group()
+    let mineGemTexture: THREE.Texture | null = null
     if (!shape && palette.length > 1) {
       diamond.visible = false
+      mineGemTexture = new THREE.TextureLoader().load(
+        `${import.meta.env.BASE_URL}assets/knowledge-diamond-v2.webp`,
+      )
+      mineGemTexture.colorSpace = THREE.SRGBColorSpace
       palette.forEach((color, index) => {
-        const loose = new THREE.Mesh(
-          createDiamondGeometry(0.55, 1.2, 10),
-          createGemMaterial(color),
+        const loose = new THREE.Sprite(
+          new THREE.SpriteMaterial({
+            map: mineGemTexture,
+            color: new THREE.Color(color).lerp(new THREE.Color(0xffffff), 0.22),
+            transparent: true,
+            opacity: 1,
+            depthWrite: false,
+            toneMapped: false,
+          }),
         )
-        addCrystalLayers(loose, loose.geometry, color)
         const angle = (index / palette.length) * Math.PI * 2 - Math.PI / 2
-        loose.position.set(Math.cos(angle) * 1.45, Math.sin(angle) * 1.08, 0)
-        loose.rotation.set(0.2, index * 0.7, 0)
+        loose.position.set(
+          Math.cos(angle) * 1.5,
+          Math.sin(angle) * 1.06,
+          0,
+        )
+        loose.scale.set(1, 0.85, 1)
         looseGems.add(loose)
       })
       scene.add(looseGems)
@@ -235,8 +249,9 @@ export function CrystalStage({
       }
       diamond.rotation.y = time * 0.00055 + pointer.x
       diamond.rotation.x += (0.15 + pointer.y - diamond.rotation.x) * 0.04
-      looseGems.rotation.y = time * 0.00035 + pointer.x
-      looseGems.rotation.x = pointer.y * 0.4
+      looseGems.rotation.z = time * 0.00012
+      looseGems.rotation.y = pointer.x * 0.25
+      looseGems.rotation.x = pointer.y * 0.2
       renderer.render(scene, camera)
     })
 
@@ -252,8 +267,11 @@ export function CrystalStage({
             ? object.material
             : [object.material]
           materials.forEach((material) => material.dispose())
+        } else if (object instanceof THREE.Sprite) {
+          object.material.dispose()
         }
       })
+      mineGemTexture?.dispose()
       environment.dispose()
       renderer.dispose()
       renderer.domElement.remove()

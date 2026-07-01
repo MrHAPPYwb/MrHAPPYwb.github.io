@@ -82,7 +82,7 @@ function LevelComplete({
       <div className="complete-rays" aria-hidden="true" />
       <div className="complete-title">
         <small>LEVEL {completion.level.id} CLEAR</small>
-        <strong>{reward ? '五关彩钻奖励！' : '抓矿成功！'}</strong>
+        <strong>{reward ? '本关彩钻奖励！' : '抓矿成功！'}</strong>
         <span>{completion.score} 分</span>
       </div>
       {reward ? (

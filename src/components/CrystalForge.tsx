@@ -108,7 +108,7 @@ export function CrystalForge({
         <div className="forge-locked-copy">
           <LockKeyhole size={26} />
           <strong>还需要集齐五种颜色</strong>
-          <span>每通关 5 个关卡，矿山赠送一颗真正的彩钻。</span>
+          <span>每通过一个关卡，矿山都会赠送一颗真正的彩钻。</span>
         </div>
       ) : (
         <>

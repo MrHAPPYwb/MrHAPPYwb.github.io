@@ -19,7 +19,13 @@ const subjectCounts = allQuestions.reduce(
 assert(subjectCounts.chinese === 120, 'Chinese pool must contain 120 variants')
 assert(subjectCounts.math === 120, 'Math pool must contain 120 variants')
 assert(subjectCounts.english === 60, 'English pool must contain 60 variants')
-assert(levels.filter((level) => level.rewardColor).length === 20, 'Every fifth level must award a gem')
+assert(levels.filter((level) => level.rewardColor).length === 100, 'Every level must award a gem')
+for (let start = 0; start < levels.length; start += 5) {
+  assert(
+    new Set(levels.slice(start, start + 5).map((level) => level.rewardColor)).size === 5,
+    `Levels ${start + 1}-${start + 5} must award all five gem colors`,
+  )
+}
 
 for (const level of levels) {
   assert(level.id >= 1 && level.id <= 100, `Invalid level ID ${level.id}`)
@@ -37,10 +43,7 @@ for (const level of levels) {
       `Level ${level.id} must contain three ${subject} questions`,
     )
   }
-  assert(
-    level.id % 5 === 0 ? Boolean(level.rewardColor) : !level.rewardColor,
-    `Level ${level.id} has an invalid reward`,
-  )
+  assert(Boolean(level.rewardColor), `Level ${level.id} must award a gem`)
 
   for (const question of level.questions) {
     assert(question.options.length >= 2, `${question.id} needs at least two options`)
@@ -52,5 +55,5 @@ for (const level of levels) {
 
 console.log(
   `Curriculum OK: ${levels.length} levels, ${allQuestions.length} variants, ` +
-    `every level 3+3+3, ${subjectCounts.chinese}/${subjectCounts.math}/${subjectCounts.english} pool, 20 gem rewards.`,
+    `every level 3+3+3, ${subjectCounts.chinese}/${subjectCounts.math}/${subjectCounts.english} pool, 100 gem rewards.`,
 )
