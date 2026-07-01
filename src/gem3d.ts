@@ -114,7 +114,7 @@ export function addCrystalEnvironment(
   renderer: THREE.WebGLRenderer,
 ) {
   const generator = new THREE.PMREMGenerator(renderer)
-  const environment = generator.fromScene(new RoomEnvironment(), 0.05).texture
+  const environment = generator.fromScene(new RoomEnvironment(), 0.04).texture
   scene.environment = environment
   generator.dispose()
   return environment

@@ -576,7 +576,8 @@ button:focus-visible {
   white-space: nowrap;
 }
 
-.forge-header > span {
+.forge-header > span,
+.forge-gallery-button {
   width: 48px;
   height: 48px;
   display: grid;
@@ -589,6 +590,34 @@ button:focus-visible {
 .forge-header > span.unlocked {
   color: #7b4304;
   background: #ffe178;
+}
+
+.forge-gallery-button {
+  position: relative;
+  min-height: 48px;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  color: #5c3650;
+  background: rgba(255, 248, 242, 0.9);
+}
+
+.forge-gallery-button b {
+  position: absolute;
+  right: -2px;
+  bottom: -2px;
+  min-width: 19px;
+  height: 19px;
+  display: grid;
+  place-items: center;
+  padding: 0 4px;
+  border: 1px solid #fff;
+  border-radius: 10px;
+  color: #4c2c08;
+  background: #ffe16a;
+  font-size: 9px;
+}
+
+.forge-gallery-button:disabled {
+  opacity: 0.48;
 }
 
 .forge-inventory {
@@ -612,7 +641,22 @@ button:focus-visible {
   border-radius: 999px;
   color: var(--gem-color);
   background: rgba(63, 32, 58, 0.76);
-  filter: drop-shadow(0 0 7px var(--gem-color));
+  transition: opacity 220ms ease, filter 220ms ease, background 220ms ease;
+}
+
+.forge-inventory .gem-lit {
+  filter: drop-shadow(0 0 8px var(--gem-color));
+}
+
+.forge-inventory .gem-lit svg {
+  fill: color-mix(in srgb, var(--gem-color), transparent 42%);
+}
+
+.forge-inventory .gem-dim {
+  color: #77717d;
+  background: rgba(49, 43, 52, 0.82);
+  filter: grayscale(1);
+  opacity: 0.56;
 }
 
 .forge-inventory b {
@@ -630,19 +674,54 @@ button:focus-visible {
   touch-action: none;
 }
 
-.forge-model.impact {
-  animation: forge-hit 180ms ease;
+.forge-striking-hammer {
+  position: absolute;
+  top: -4px;
+  right: -18px;
+  z-index: 8;
+  width: 224px;
+  height: auto;
+  transform: rotate(-24deg) translate(22px, -16px);
+  transform-origin: 88% 9%;
+  filter: drop-shadow(0 12px 9px rgba(47, 17, 38, 0.38));
+  pointer-events: none;
 }
 
-.impact-burst {
+.forge-striking-hammer.swinging {
+  animation: hammer-strike 470ms cubic-bezier(0.22, 0.82, 0.28, 1) both;
+}
+
+.impact-sparks {
   position: absolute;
   left: 50%;
   top: 54%;
-  width: 120px;
-  height: 120px;
+  z-index: 9;
+  width: 96px;
+  height: 76px;
   transform: translate(-50%, -50%);
-  background: repeating-conic-gradient(#fff 0deg 5deg, transparent 5deg 22deg);
-  animation: impact-pop 330ms ease-out both;
+  color: #fff7b0;
+  pointer-events: none;
+}
+
+.impact-sparks svg {
+  position: absolute;
+  filter: drop-shadow(0 0 9px #ffb83f);
+  animation: impact-pop 360ms ease-out both;
+}
+
+.impact-sparks svg:nth-child(1) {
+  left: 28px;
+  top: 20px;
+}
+
+.impact-sparks svg:nth-child(2) {
+  left: 2px;
+  top: 5px;
+}
+
+.impact-sparks svg:nth-child(3) {
+  right: 2px;
+  bottom: 3px;
 }
 
 .forge-locked-copy {
@@ -680,7 +759,7 @@ button:focus-visible {
 }
 
 .shape-selector button {
-  min-height: 68px;
+  min-height: 58px;
   display: grid;
   place-content: center;
   gap: 2px;
@@ -700,8 +779,10 @@ button:focus-visible {
   opacity: 0.62;
 }
 
-.shape-selector button span {
-  font-size: 24px;
+.shape-selector button svg {
+  margin: 0 auto;
+  color: #8d5077;
+  filter: drop-shadow(0 2px 4px rgba(69, 28, 57, 0.18));
 }
 
 .shape-selector button strong {
@@ -742,6 +823,191 @@ button:focus-visible {
   background: #ffe078;
   box-shadow: 0 8px 18px rgba(70, 28, 50, 0.28);
   font-size: 16px;
+  font-weight: 900;
+}
+
+.forge-result,
+.forge-gallery {
+  position: absolute;
+  top: calc(76px + env(safe-area-inset-top));
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  overflow: hidden;
+}
+
+.forge-result-stage,
+.gallery-stage {
+  position: absolute;
+  top: 0;
+  right: 4%;
+  left: 4%;
+  height: 54%;
+}
+
+.forge-result-copy,
+.gallery-caption {
+  position: absolute;
+  top: 51%;
+  right: 22px;
+  left: 22px;
+  z-index: 12;
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 2px 8px rgba(50, 20, 44, 0.72);
+}
+
+.forge-result-copy > svg {
+  color: #ffe16a;
+  filter: drop-shadow(0 0 15px #ffe16a);
+  animation: level-pulse 1.1s ease-in-out infinite;
+}
+
+.forge-result-copy small,
+.gallery-caption small {
+  color: #ffe7a4;
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.forge-result-copy strong,
+.gallery-caption strong {
+  font-size: 24px;
+}
+
+.forge-result-copy span,
+.gallery-caption span {
+  color: #fff3fb;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.forge-result-actions {
+  position: absolute;
+  right: 14px;
+  bottom: calc(14px + env(safe-area-inset-bottom));
+  left: 14px;
+  z-index: 13;
+  display: grid;
+  gap: 7px;
+}
+
+.forge-result-actions button {
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #50300d;
+  background: #ffe078;
+  font-weight: 900;
+}
+
+.forge-result-actions button:last-child {
+  min-height: 44px;
+  color: #fff;
+  background: rgba(54, 29, 55, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.66);
+}
+
+.gallery-stage {
+  height: 50%;
+}
+
+.gallery-caption {
+  top: 49%;
+}
+
+.gallery-caption strong {
+  font-size: 21px;
+}
+
+.gallery-strip {
+  position: absolute;
+  right: 10px;
+  bottom: calc(14px + env(safe-area-inset-bottom));
+  left: 10px;
+  z-index: 13;
+  display: flex;
+  gap: 7px;
+  overflow-x: auto;
+  padding: 5px 1px 7px;
+  scrollbar-width: none;
+  scroll-snap-type: x proximity;
+}
+
+.gallery-strip::-webkit-scrollbar {
+  display: none;
+}
+
+.gallery-strip button {
+  width: 92px;
+  min-width: 92px;
+  min-height: 70px;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 3px;
+  padding: 6px 4px;
+  border: 2px solid rgba(255, 255, 255, 0.64);
+  color: #5a334a;
+  background: rgba(255, 249, 243, 0.9);
+  scroll-snap-align: center;
+}
+
+.gallery-strip button.active {
+  border-color: #ffe16a;
+  background: #fff1aa;
+  transform: translateY(-3px);
+}
+
+.gallery-strip button strong {
+  max-width: 80px;
+  overflow: hidden;
+  font-size: 9px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.gallery-empty {
+  position: absolute;
+  inset: 12% 24px 18%;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 12px;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 2px 8px rgba(45, 18, 39, 0.72);
+}
+
+.gallery-empty > svg {
+  color: #ffe16a;
+  filter: drop-shadow(0 0 14px #ffe16a);
+}
+
+.gallery-empty strong {
+  font-size: 19px;
+}
+
+.gallery-empty span {
+  color: #fff2fa;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.gallery-empty button {
+  min-width: 230px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  color: #50300d;
+  background: #ffe078;
   font-weight: 900;
 }
 
@@ -1013,7 +1279,6 @@ button:focus-visible {
   font-weight: 900;
 }
 
-.forged-result,
 .parent-settings {
   position: absolute;
   z-index: 90;
@@ -1021,43 +1286,6 @@ button:focus-visible {
   background: rgba(26, 14, 45, 0.96);
   box-shadow: 0 16px 50px rgba(12, 5, 24, 0.58);
   backdrop-filter: blur(14px);
-}
-
-.forged-result {
-  inset: 0;
-  display: grid;
-  place-content: center;
-  justify-items: center;
-  gap: 10px;
-  padding: 28px;
-  text-align: center;
-}
-
-.forged-result svg {
-  color: #ffe16a;
-  filter: drop-shadow(0 0 18px #ffe16a);
-}
-
-.forged-result small {
-  color: #9ff4e4;
-  font-weight: 900;
-}
-
-.forged-result strong {
-  font-size: 28px;
-}
-
-.forged-result span {
-  color: #e5d8f7;
-  font-size: 13px;
-}
-
-.forged-result button {
-  width: 220px;
-  margin-top: 12px;
-  color: #4d2e08;
-  background: #ffe16a;
-  font-weight: 900;
 }
 
 .parent-settings {
@@ -1125,13 +1353,27 @@ button:focus-visible {
   to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
-@keyframes forge-hit {
-  50% { transform: scale(0.96) translateY(4px); }
+@keyframes hammer-strike {
+  0% {
+    transform: rotate(-34deg) translate(32px, -24px);
+  }
+  48% {
+    transform: rotate(-12deg) translate(8px, 4px);
+  }
+  63% {
+    transform: rotate(12deg) translate(-34px, 54px) scale(1.02);
+  }
+  74% {
+    transform: rotate(7deg) translate(-28px, 46px);
+  }
+  100% {
+    transform: rotate(-24deg) translate(22px, -16px);
+  }
 }
 
 @keyframes impact-pop {
-  from { opacity: 1; transform: translate(-50%, -50%) scale(0.35); }
-  to { opacity: 0; transform: translate(-50%, -50%) scale(1.45); }
+  from { opacity: 1; transform: scale(0.35) rotate(-12deg); }
+  to { opacity: 0; transform: scale(1.45) rotate(22deg); }
 }
 
 @keyframes level-pulse {

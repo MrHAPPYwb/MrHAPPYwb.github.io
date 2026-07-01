@@ -1,5 +1,11 @@
 import Dexie, { type Table } from 'dexie'
 import { levels, type GemColor } from './curriculum'
+import {
+  forgeShapeMeta,
+  normalizeForgedCreations,
+  type ForgedCreation,
+  type ForgeShape,
+} from './forge'
 
 export type SkillRecord = {
   correct: number
@@ -16,7 +22,7 @@ export type MinerProgress = {
   completedLevels: number[]
   rewardedLevels: number[]
   inventory: Record<GemColor, number>
-  forgedCreations: string[]
+  forgedCreations: ForgedCreation[]
   questionRecords: Record<string, SkillRecord>
   totalCorrect: number
   bestCombo: number
@@ -67,6 +73,7 @@ function normalize(progress: MinerProgress): MinerProgress {
     : []
   const hasRewardLedger = Array.isArray(progress.rewardedLevels)
   const inventory = { ...blank.inventory, ...progress.inventory }
+  const forgedCreations = normalizeForgedCreations(progress.forgedCreations)
 
   if (!hasRewardLedger) {
     const legacyRewardedLevels = new Set(
@@ -85,9 +92,7 @@ function normalize(progress: MinerProgress): MinerProgress {
     playerName: '研姐',
     completedLevels,
     rewardedLevels: hasRewardLedger ? progress.rewardedLevels : completedLevels,
-    forgedCreations: Array.isArray(progress.forgedCreations)
-      ? progress.forgedCreations
-      : [],
+    forgedCreations,
     openedChests: Array.isArray(progress.openedChests)
       ? progress.openedChests
       : [],
@@ -100,7 +105,11 @@ export async function loadProgress() {
   const stored = await db.progress.get('main')
   if (stored) {
     const normalized = normalize(stored)
-    if (!Array.isArray(stored.rewardedLevels)) {
+    const hasLegacyCreations = Array.isArray(stored.forgedCreations) &&
+      (stored.forgedCreations as unknown[]).some(
+        (creation) => typeof creation === 'string',
+      )
+    if (!Array.isArray(stored.rewardedLevels) || hasLegacyCreations) {
       await db.progress.put(normalized)
     }
     return normalized
@@ -203,7 +212,7 @@ export function canForge(progress: MinerProgress) {
 
 export async function forgeCreation(
   progress: MinerProgress,
-  creationName: string,
+  shape: ForgeShape,
 ) {
   if (!canForge(progress)) {
     return progress
@@ -215,7 +224,15 @@ export async function forgeCreation(
   const next: MinerProgress = {
     ...progress,
     inventory,
-    forgedCreations: [...progress.forgedCreations, creationName],
+    forgedCreations: [
+      ...progress.forgedCreations,
+      {
+        id: `${shape}-${Date.now()}-${progress.forgedCreations.length + 1}`,
+        shape,
+        name: forgeShapeMeta[shape].name,
+        forgedAt: Date.now(),
+      },
+    ],
   }
   await saveProgress(next)
   return next

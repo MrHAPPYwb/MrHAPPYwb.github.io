@@ -16,6 +16,7 @@ import {
   type Level,
   type Question,
 } from './curriculum'
+import type { ForgedCreation, ForgeShape } from './forge'
 import { LevelMap } from './components/LevelMap'
 import {
   completeLevel,
@@ -114,7 +115,6 @@ function App() {
   const [screen, setScreen] = useState<Screen>('mine')
   const [selectedLevel, setSelectedLevel] = useState(1)
   const [completion, setCompletion] = useState<Completion | null>(null)
-  const [forgedResult, setForgedResult] = useState('')
   const [settingsOpen, setSettingsOpen] = useState(false)
   const currentLevel = getLevel(selectedLevel)
   progressRef.current = progress
@@ -183,11 +183,11 @@ function App() {
     [],
   )
 
-  async function handleForged(name: string) {
-    const next = await forgeCreation(progressRef.current, name)
+  async function handleForged(shape: ForgeShape) {
+    const next = await forgeCreation(progressRef.current, shape)
     progressRef.current = next
     setProgress(next)
-    setForgedResult(name)
+    return next.forgedCreations.at(-1) as ForgedCreation | undefined
   }
 
   async function handleReset() {
@@ -268,10 +268,9 @@ function App() {
       {screen === 'forge' && (
         <Suspense fallback={<GameLoading />}>
           <CrystalForge
-            key={progress.forgedCreations.length}
             progress={progress}
             onBack={() => setScreen('mine')}
-            onForged={(name) => void handleForged(name)}
+            onForged={handleForged}
           />
         </Suspense>
       )}
@@ -281,24 +280,6 @@ function App() {
           completion={completion}
           onContinue={continueAfterLevel}
         />
-      )}
-
-      {forgedResult && (
-        <div className="forged-result" role="dialog">
-          <Sparkles size={52} />
-          <small>研姐亲手锻造</small>
-          <strong>{forgedResult}</strong>
-          <span>作品已经放进水晶收藏柜。</span>
-          <button
-            type="button"
-            onClick={() => {
-              setForgedResult('')
-              setScreen('mine')
-            }}
-          >
-            返回矿场
-          </button>
-        </div>
       )}
 
       {settingsOpen && (

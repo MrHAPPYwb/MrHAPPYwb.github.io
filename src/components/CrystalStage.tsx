@@ -9,8 +9,7 @@ import {
   gemHexColors,
 } from '../gem3d'
 import type { GemColor } from '../curriculum'
-
-export type ForgeShape = 'bunny' | 'cat' | 'crown' | 'butterfly'
+import type { ForgeShape } from '../forge'
 
 function gemMesh(
   geometry: THREE.BufferGeometry,
@@ -84,13 +83,79 @@ function createSculpture(shape: ForgeShape, colors: number[]) {
         gemMesh(gem, colors[index % colors.length], [0.28, height * 0.42, 0.28], [x, 0.15 + height * 0.28, 0]),
       )
     }
-  } else {
+  } else if (shape === 'butterfly') {
     group.add(gemMesh(capsule, colors[0], [0.42, 1.2, 0.42], [0, 0, 0]))
     const wing = new THREE.SphereGeometry(1, 12, 8)
     group.add(gemMesh(wing, colors[1], [0.82, 1.05, 0.24], [-0.78, 0.52, 0]))
     group.add(gemMesh(wing, colors[2], [0.82, 1.05, 0.24], [0.78, 0.52, 0]))
     group.add(gemMesh(wing, colors[3], [0.66, 0.75, 0.2], [-0.68, -0.65, 0]))
     group.add(gemMesh(wing, colors[4], [0.66, 0.75, 0.2], [0.68, -0.65, 0]))
+  } else if (shape === 'heart') {
+    const heart = new THREE.Shape()
+    heart.moveTo(0, -1.05)
+    heart.bezierCurveTo(-0.28, -0.62, -1.18, 0.05, -1.04, 0.67)
+    heart.bezierCurveTo(-0.92, 1.24, -0.22, 1.22, 0, 0.72)
+    heart.bezierCurveTo(0.22, 1.22, 0.92, 1.24, 1.04, 0.67)
+    heart.bezierCurveTo(1.18, 0.05, 0.28, -0.62, 0, -1.05)
+    const geometry = new THREE.ExtrudeGeometry(heart, {
+      depth: 0.42,
+      bevelEnabled: true,
+      bevelSegments: 3,
+      steps: 1,
+      bevelSize: 0.09,
+      bevelThickness: 0.1,
+    })
+    geometry.center()
+    group.add(gemMesh(geometry, colors[0], [1.05, 1.05, 1.05], [0, 0, 0]))
+    group.add(gemMesh(gem, colors[3], [0.28, 0.42, 0.24], [0, 0.1, 0.48]))
+  } else if (shape === 'star') {
+    const star = new THREE.Shape()
+    for (let point = 0; point < 10; point += 1) {
+      const radius = point % 2 === 0 ? 1.2 : 0.5
+      const angle = -Math.PI / 2 + (point * Math.PI) / 5
+      const x = Math.cos(angle) * radius
+      const y = Math.sin(angle) * radius
+      if (point === 0) star.moveTo(x, y)
+      else star.lineTo(x, y)
+    }
+    star.closePath()
+    const geometry = new THREE.ExtrudeGeometry(star, {
+      depth: 0.38,
+      bevelEnabled: true,
+      bevelSegments: 3,
+      steps: 1,
+      bevelSize: 0.08,
+      bevelThickness: 0.1,
+    })
+    geometry.center()
+    group.add(gemMesh(geometry, colors[4], [1, 1, 1], [0, 0, 0]))
+    group.add(gemMesh(gem, colors[1], [0.24, 0.36, 0.22], [0, 0, 0.46]))
+  } else if (shape === 'castle') {
+    const block = new THREE.BoxGeometry(1, 1, 1)
+    const roof = new THREE.ConeGeometry(0.52, 0.75, 6)
+    group.add(gemMesh(block, colors[1], [1.5, 0.85, 0.58], [0, -0.45, 0]))
+    group.add(gemMesh(block, colors[2], [0.58, 1.48, 0.58], [-1.02, 0.05, 0]))
+    group.add(gemMesh(block, colors[3], [0.58, 1.48, 0.58], [1.02, 0.05, 0]))
+    group.add(gemMesh(block, colors[0], [0.62, 1.75, 0.62], [0, 0.25, 0]))
+    group.add(gemMesh(roof, colors[4], [1, 1, 1], [-1.02, 1.18, 0]))
+    group.add(gemMesh(roof, colors[0], [1.08, 1.18, 1.08], [0, 1.52, 0]))
+    group.add(gemMesh(roof, colors[4], [1, 1, 1], [1.02, 1.18, 0]))
+  } else {
+    group.add(gemMesh(capsule, colors[2], [0.26, 1.15, 0.26], [0, -0.9, 0]))
+    const center = new THREE.IcosahedronGeometry(0.42, 1)
+    group.add(gemMesh(center, colors[4], [1, 1, 0.7], [0, 0.38, 0]))
+    const petal = new THREE.SphereGeometry(0.62, 12, 8)
+    for (let index = 0; index < 6; index += 1) {
+      const angle = (index / 6) * Math.PI * 2
+      const petalMesh = gemMesh(
+        petal,
+        colors[index % colors.length],
+        [0.55, 0.88, 0.22],
+        [Math.cos(angle) * 0.82, 0.38 + Math.sin(angle) * 0.82, 0],
+      )
+      petalMesh.rotation.z = angle - Math.PI / 2
+      group.add(petalMesh)
+    }
   }
 
   return group
@@ -102,12 +167,14 @@ export function CrystalStage({
   progress = 100,
   className = '',
   environmentUrl,
+  activeColors,
 }: {
   colors: GemColor[]
   shape?: ForgeShape
   progress?: number
   className?: string
   environmentUrl?: string
+  activeColors?: GemColor[]
 }) {
   const hostRef = useRef<HTMLDivElement>(null)
   const progressRef = useRef(progress)
@@ -119,7 +186,11 @@ export function CrystalStage({
       return
     }
 
-    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true })
+    const renderer = new THREE.WebGLRenderer({
+      alpha: true,
+      antialias: true,
+      preserveDrawingBuffer: true,
+    })
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
     renderer.setClearColor(0x000000, 0)
     renderer.outputColorSpace = THREE.SRGBColorSpace
@@ -152,6 +223,7 @@ export function CrystalStage({
     }
 
     const palette = colors.map((color) => gemHexColors[color])
+    const activeColorSet = new Set(activeColors ?? colors)
     const diamondGeometry = createDiamondGeometry(1.25, 2.7, 12)
     const diamond = new THREE.Mesh(
       diamondGeometry,
@@ -174,12 +246,15 @@ export function CrystalStage({
       )
       mineGemTexture.colorSpace = THREE.SRGBColorSpace
       palette.forEach((color, index) => {
+        const isActive = activeColorSet.has(colors[index])
         const loose = new THREE.Sprite(
           new THREE.SpriteMaterial({
             map: mineGemTexture,
-            color: new THREE.Color(color).lerp(new THREE.Color(0xffffff), 0.22),
+            color: isActive
+              ? new THREE.Color(color).lerp(new THREE.Color(0xffffff), 0.22)
+              : new THREE.Color(0x49434f),
             transparent: true,
-            opacity: 1,
+            opacity: isActive ? 1 : 0.38,
             depthWrite: false,
             toneMapped: false,
           }),
@@ -276,7 +351,7 @@ export function CrystalStage({
       renderer.dispose()
       renderer.domElement.remove()
     }
-  }, [colors, environmentUrl, shape])
+  }, [activeColors, colors, environmentUrl, shape])
 
   return <div className={`crystal-stage ${className}`} ref={hostRef} />
 }
